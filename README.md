@@ -1,9 +1,14 @@
 # [funBi](https://owncloud.gwdg.de/index.php/s/azm5ImqUpGUYdRw): Fun with Bioinformatics
+## Authors
+Beatriz Vieira Mourato and Bernhard Haubold
 ## Description
-This is a 2 h practical on skills useful in bioinformatics,
+This is a two hour practical for highschool students. Our aim is to
+give a first taste of three things useful in bioinformatics:
+
 - Unix command line
 - typesetting in LaTeX
 - handling genome data
-These three things are explored with a view to visualizing the genes
-in the genome of *Mycoplasmoides genitalium*, which has one of the
-smallest genomes of any free-living organism.
+
+These three things are explored with the ultimate aim of using LaTeX
+to draw the 519 genes along the genome of *Mycoplasmoides genitalium*,
+which has one of the smallest genomes of any free-living organism.
