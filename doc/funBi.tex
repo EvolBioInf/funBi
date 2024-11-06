@@ -1,0 +1,25 @@
+\documentclass[a4paper]{report}
+\input{header}
+\begin{document}
+\pagestyle{noweb}
+
+\title{\ty{funBi}:  Fun with Bioinformatics\\\small A Practical for
+  Highschool Students}
+\author{Beatriz Vieira Mourato \& Bernhard Haubold}
+\date{\input{date.txt}\hspace{-3pt}, \input{version.txt}}
+\maketitle
+
+\tableofcontents
+
+\chapter{Introduction}\label{ch:intro}
+\input{intro}
+\chapter{The Unix Command Line}\label{ch:unix}
+\input{unix}
+\chapter{Making Beautiful Words and Drawings}\label{ch:latex}
+\input{latex}
+\chapter{The Genome of \emph{Mycoplasmoides genitalium}}\label{ch:genome}
+\input{genome}
+
+\bibliography{ref}
+\end{document}
+

@@ -1,0 +1,75 @@
+#+begin_export latex
+We download the genome of \emph{Mycoplasmoides genitalium}, which has
+accession \verb+GCA_000027325.1+. Apart from the raw genome sequence,
+we also download the annotation of that sequence, which comes in a
+format called GFF3. We download the data in a compact, ``dehydrated'',
+form.
+#+end_export
+#+begin_src sh <<genome>>=
+  datasets download genome accession GCA_000027325.1 \
+	   --include genome,gff3 \
+	   --dehydrated
+#+end_src
+#+begin_export latex
+We unzip the genome data.
+#+end_export
+#+begin_src sh <<genome>>=
+  unzip ncbi_dataset.zip
+#+end_src
+#+begin_export latex
+Since we downloaded only the dehydrated version of the data, we need
+to rehydrate it, before we can use it.
+#+end_export
+#+begin_src sh <<genome>>=
+  datasets rehydrate --directory .
+#+end_src
+#+begin_export latex
+The names of the files we have now downloaded are a bit
+inconvenient. So we copy them to better names.
+#+end_export
+#+begin_src sh <<genome>>=
+  cp ncbi_dataset/data/*/*.fna mg.fna
+  cp ncbi_dataset/data/*/*.gff mg.gff
+#+end_src
+#+begin_export latex
+Take a look at the genome sequence with the program \ty{less}, from
+which you can quit with q. Can you describe what you see?
+#+end_export
+#+begin_src sh <<genome>>=
+  less mg.fna
+#+end_src
+#+begin_export latex
+Use the program \ty{cres} to count the residues in the genome. How
+large is the genome of \emph{M. genitalium}?
+#+end_export
+#+begin_src sh <<genome>>=
+  cres mg.fna
+#+end_src
+#+begin_export latex
+Also take a look at the annotation file. Can you describe what you
+see?
+#+end_export
+#+begin_export latex
+We extract the genes in the genome by filtering for rows where the
+entry in the third column is ``gene''. We again use \ty{less} to look
+at the data, only this time we ``pipe'' the output of the filtering to
+become input of \ty{less} using the pipe command, \verb+|+.
+#+end_export
+#+begin_src sh <<genome>>=
+  awk '$3 == "gene"' mg.gff | less
+#+end_src
+#+begin_export latex
+We count the number of genes with the word counting program, \ty{wc},
+which we use in line-counting mode. How many genes are there?
+#+end_export
+#+begin_src sh <<genome>>=
+  awk '$3 == "gene"' mg.gff | wc -l
+#+end_src
+#+begin_export latex
+\begin{itemize}
+\item forward strand
+\item reverse strand
+\item extract gene coordinates and strand
+\item draw genes
+\end{itemize}
+#+end_export

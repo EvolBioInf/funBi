@@ -1,0 +1,123 @@
+#+begin_export latex
+\TeX{} is a program to typeset documents~\cite{knu84:tex}. It is today
+usually known as \LaTeX{}~\cite{lam94:lat}, the version we shall
+use. Create the file \ty{hello.tex} in \ty{emacs}. It contains a
+header, a pair of commands to begin and end the document, and the
+title and the body of the document.
+#+end_export
+#+begin_src latex <<hello.tex>>=
+  %%<<Header>>
+  \begin{document}
+  %%<<Title>>
+  %%<<Body>>
+  \end{document}
+#+end_src
+#+begin_export latex
+In the header we declare the class of the document, where we have a
+choice between article, report, and book. We choose article.
+#+end_export
+#+begin_src latex <<Header>>=
+  \documentclass{article}
+#+end_src
+#+begin_export latex
+The title consists of the actual title and the author, followed by the
+command to make the title. As author you can put your own name.
+#+end_export
+#+begin_src latex <<Title>>=
+  \author{Beatriz}
+  \title{My first \LaTeX{} document}
+  \maketitle
+#+end_src
+#+begin_export latex
+Now we convert \ty{hello.tex} into the pdf \ty{hello.pdf} using the
+program \ty{pdflatex}.
+#+end_export
+#+begin_src sh <<cli>>=
+  pdflatex hello
+#+end_src
+#+begin_export latex
+List the files in your current directory to make sure the new file
+\ty{hello.pdf} has been created.
+#+end_export
+#+begin_src sh <<cli>>=
+  ls
+#+end_src
+#+begin_export latex
+We use the program \ty{evince} to view \ty{hello.pdf}. Notice the
+ampersand, \verb+&+, at the end of the command. It ensures that the
+window containing the pdf and the terminal can be active
+simultaneously. Otherwise the terminal is frozen until the window
+containing pdf is closed again.
+#+end_export
+#+begin_src sh <<cli>>=
+  evince hello.pdf &
+#+end_src
+#+begin_export latex
+The title automatically contains the current date. By default, this
+date is in English, which may not be your first language. To typeset
+the date in, say, German, expand the header by the command to use the
+package babel with option German.
+#+end_export
+#+begin_src latex <<Header>>=
+  \usepackage[german]{babel}
+#+end_src
+#+begin_export latex
+Don't forget to typeset you document to see the changes.
+#+end_export
+#+begin_src sh <<cli>>=
+  pdflatex hello.tex
+#+end_src
+#+begin_export latex
+You can replace ``german'' by any language for which the language
+installed on your system, try, for example, Portugese, or Russian.
+#+end_export
+#+begin_export latex
+In the body of our document, we learn how to draw lines in
+\LaTeX{}. So we enter the corresponding section head.
+#+end_export
+#+begin_src latex <<Body>>=
+  \section{Drawing Lines}
+#+end_src
+#+begin_export latex
+Again, run \ty{pdflatex} to see the document with the new section
+heading.
+
+We use Tikz to draw lines. Tikz stands for the German phrase ``Tikz
+ist kein Zeichenprogramm'', which translates to ``Tikz is not a
+drawing program''. So we add to the header the command for using that
+package.
+#+end_export
+#+begin_src latex <<Header>>=
+  \usepackage{tikz}
+#+end_src
+#+begin_export latex
+In the body of our text, we add the commands to begin and end a Tikz
+picture.
+#+end_export
+#+begin_src latex <<Body>>=
+  \begin{tikzpicture}
+    %%<<Picture>>
+  \end{tikzpicture}
+#+end_src
+#+begin_export latex
+For the actual picture we first draw a grid of help lines. Notice the
+semicolon at the end of the draw command
+#+end_export
+#+begin_src latex <<Picture>>=
+  \draw[help lines] grid (3,2);
+#+end_src
+#+begin_export latex
+The first version of our picture consists of a red box. We specify
+four corners of the box and the path to connect them, which ``cycles''
+back to its origin.
+#+end_export
+#+begin_src latex <<Picture>>=
+  \draw[red] (0,1) -- (0,2) -- (1,2) -- (1,1) -- cycle;
+#+end_src
+#+begin_export latex
+If we view the red box as pointing upwards, we now draw an adjacent
+blue box pointing downwards.
+#+end_export
+#+begin_src latex <<Picture>>=
+  \draw[blue] (1,0) -- (1,1) -- (3,1) -- (3,0) -- cycle;
+#+end_src
