@@ -9,7 +9,5 @@ tikz_1.tex: mgGenome.tex
 	awk -f ../scripts/exTikz.awk genome.tex
 genome.sh: genome.org
 	bash ../scripts/org2nw genome.org | notangle -Rgenome.sh > genome.sh
-tikz_1.tex: genome.org
-	awk -f ../scripts/exTikz.awk mgGenome.tex
 clean:
-	rm -f drawGene.awk
+	rm -f drawGenes.awk mgGenome.pdf

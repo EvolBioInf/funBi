@@ -23,20 +23,20 @@ We begin our exploration of Unix by listing the contents of our
 current directory. To do so, enter the following command, followed by
 \ty{Enter}. Can you make sense of what you see?
 #+end_export
-#+begin_src sh <<unix>>=
+#+begin_src sh <<unix.sh>>=
   ls
 #+end_src
 #+begin_export latex
 We make a new directory for our work in this practical, \ty{funBi};
 don't forget to press enter after the following command.
 #+end_export
-#+begin_src sh <<unix>>=
+#+begin_src sh <<unix.sh>>=
   mkdir funBi
 #+end_src
 #+begin_export latex
 We change into this directory.
 #+end_export
-#+begin_src sh <<unix>>=
+#+begin_src sh <<unix.sh>>=
   cd funBi
 #+end_src
 #+begin_export latex
@@ -48,7 +48,7 @@ interface, some without. Since setting up the graphical user interface
 is often problematic, we run \ty{emacs} without it, that is, we start
 `no window'', \ty{-nw}.
 #+end_export
-#+begin_src sh <<unix>>=
+#+begin_src sh <<unix.sh>>=
   emacs -nw hello.txt
 #+end_src
 #+begin_export latex
