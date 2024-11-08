@@ -1,53 +1,56 @@
 #+begin_export latex
 Whenever we interact with a computer, what we are really doing is
-interacting with an operating system, you might be familiar with
-Windows or macOS. macOS belongs to a family of operating systems
-called Unix. The first Unix systems were developed in the late 1960s,
-and today Unix technology underlies much of our computing
-infrastructure, ranging from supercomputers to mobile phones.
+interacting with an operating system, for example Android, MS-Windows,
+macOS, or chromeOS. Adnroid, macOS, and chromeOS belongs to a family
+of operating systems called Unix. The first Unix systems were
+developed in the late 1960s, and today Unix technology underlies much
+of our computing infrastructure, ranging from mobile phones to
+supercomputers.
 
 The user interface of phones and most desktop computers is
 graphical. However, on desktop systems Unix also comes with a
 text-based interface, the ``command line''. On macOS the command line
-can be accessed via the terminal program, on Windows11 via the
+can be accessed via the terminal program, on Windows 10 or 11 via the
 ``Windows Subsystem for Linux'', WSL, and on chromeOS via Linux on
 ChromeOS.
 
-This text-based interface is used by computer professionals throughout
-the world. It is also standardized, which means once you have mastered
-it on one system, you have mastered it on all.
+The command-line interface is used by computer professionals
+throughout the world. It is also standardized, which means that once
+you have mastered it on one system, you have mastered it on all.
 
-We begin our exploration of Unix by making the directory \ty{bip} for our
-bioinformatics practical. To do so, enter the following command,
-followed by \ty{Enter}.
+We begin our exploration of Unix by making the directory
+\ty{funBi}. To do so, enter the following command, followed by
+\ty{Enter}.
 #+end_export
 #+begin_src sh <<unix>>=
-  mkdir bip
+  mkdir funBi
 #+end_src
 #+begin_export latex
 We change into this directory; don't forget to press enter after the
 following command.
 #+end_export
 #+begin_src sh <<unix>>=
-  cd bip
+  cd funBi
 #+end_src
 #+begin_export latex
-Since the command line is text-based, we often need write or edit text
-files. For this we use the program \ty{emacs}. This comes in versions
-with graphical user interface and in versions without. Since setting
-up the graphical user interface is often problematic, we use the
-version without graphical user interface.
+Since the command line interface is text-based, we often need write or
+edit text files. For this we need a specialized program, an
+editor. There are a number of editors to chose from, we use
+\ty{emacs}. This comes in various versions, some with graphical user
+interface, some without. Since setting up the graphical user interface
+is often problematic, we run the version without graphical user
+interface.
 #+end_export
 #+begin_src sh <<unix>>=
   emacs -nw hello.txt
 #+end_src
 #+begin_export latex
-Try typing something, for example, ``Hello world'', inside
-\ty{hello.txt}. The question is now, how can we save this? In order to
-find out, activate the menu by pressing F10. Can you find out how to
-save your text?
+Try typing something into \ty{hello.txt}, for example, ``Hello
+world''. The question is now, how can we save what we have just typed?
+In order to find out, activate the menu by pressing F10. Can you find
+out how to save your text?
 
-The program \ty{emacs} comes with many commands, of which only a few
+The program \ty{emacs} comes with many commands, only a few of which
 are really important. Perhaps the three most important commands are
 \begin{enumerate}
 \item \ty{C-x C-s} to save
@@ -56,5 +59,8 @@ are really important. Perhaps the three most important commands are
 \end{enumerate}
 
 A good way to learn \ty{emacs}, is to work through the tutorial. Can
-you find the tutorial in the menu?
+you find the tutorial in the menu? Once you've done so, spend some
+time working on the tutorial. When you quite the tutorial, \ty{emacs}
+asks, whether you'd like to save your current position. It's a good
+idea to do so and to come back for more later.
 #+end_export

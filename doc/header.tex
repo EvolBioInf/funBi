@@ -19,7 +19,11 @@
   \textcolor{white}{}
 }
 \newcommand{\epa}{\end{pa}}
-
+\newtheorem{file}{File}[chapter]
+\newcommand{\bfile}[2]{\begin{file}[\texttt{#1}]\label{#2}
+   \textcolor{white}{}
+}
+\newcommand{\efile}{\end{file}}
 
 \usepackage{graphics,color,eurosym,latexsym}
 \usepackage{algorithm,algorithmic}
@@ -50,3 +54,6 @@
         #3 & #4\\
     \end{tabular}}
 \usepackage{tikz}
+\usepackage{xspace}
+\newcommand{\TikZ}{Ti\textit{k}Z\xspace}
+\usepackage{pgfplots}

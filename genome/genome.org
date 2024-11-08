@@ -1,48 +1,52 @@
 #+begin_export latex
 We download the genome of \emph{Mycoplasmoides genitalium}, which has
-accession \verb+GCA_000027325.1+. Apart from the raw genome sequence,
-we also download the annotation of that sequence, which comes in a
-format called GFF3. We download the data in a compact, ``dehydrated'',
-form.
+accession \verb+GCA_000027325.1+. Apart from its raw genome sequence,
+we also download its annotation, the list of genes and other features
+of the genome sequence. The annotation comes in a format called
+GFF3. We download the genome and its annotation in a compact,
+``dehydrated'', form. The backslashes, \verb+\+, in the following
+command indicate line continuation.
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   datasets download genome accession GCA_000027325.1 \
 	   --include genome,gff3 \
 	   --dehydrated
 #+end_src
 #+begin_export latex
-We unzip the genome data.
+We have now downloaded the compressed file \ty{ncbi\_dataset.zip},
+which we uncompress, or ``unzip''.
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   unzip ncbi_dataset.zip
 #+end_src
 #+begin_export latex
 Since we downloaded only the dehydrated version of the data, we need
 to rehydrate it, before we can use it.
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   datasets rehydrate --directory .
 #+end_src
 #+begin_export latex
-The names of the files we have now downloaded are a bit
-inconvenient. So we copy them to better names.
+The names and locations of the genome and annotation files we have
+just downloaded are a bit inconvenient. So we move them into our
+working directory and give them better names.
 #+end_export
-#+begin_src sh <<genome>>=
-  cp ncbi_dataset/data/*/*.fna mg.fna
-  cp ncbi_dataset/data/*/*.gff mg.gff
+#+begin_src sh <<genome.sh>>=
+  mv ncbi_dataset/data/*/*.fna mg.fna
+  mv ncbi_dataset/data/*/*.gff mg.gff
 #+end_src
 #+begin_export latex
-Take a look at the genome sequence with the program \ty{less}, from
-which you can quit with q. Can you describe what you see?
+Take a look at the genome sequence with the program \ty{less}. Can you
+describe what you see? Press \ty{q} to quit.
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   less mg.fna
 #+end_src
 #+begin_export latex
 Use the program \ty{cres} to count the residues in the genome. How
 large is the genome of \emph{M. genitalium}?
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   cres mg.fna
 #+end_src
 #+begin_export latex
@@ -53,23 +57,171 @@ see?
 We extract the genes in the genome by filtering for rows where the
 entry in the third column is ``gene''. We again use \ty{less} to look
 at the data, only this time we ``pipe'' the output of the filtering to
-become input of \ty{less} using the pipe command, \verb+|+.
+become the input of \ty{less} using the pipe command, \verb+|+.
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   awk '$3 == "gene"' mg.gff | less
 #+end_src
 #+begin_export latex
 We count the number of genes with the word counting program, \ty{wc},
-which we use in line-counting mode. How many genes are there?
+which we use in line-counting mode, \ty{-l}. How many genes are there?
 #+end_export
-#+begin_src sh <<genome>>=
+#+begin_src sh <<genome.sh>>=
   awk '$3 == "gene"' mg.gff | wc -l
 #+end_src
 #+begin_export latex
-\begin{itemize}
-\item forward strand
-\item reverse strand
-\item extract gene coordinates and strand
-\item draw genes
-\end{itemize}
+For better handling, we cut out the gene intervals and their strand,
+and save the result to the file \ty{genes.txt}.
 #+end_export
+#+begin_src sh <<genome.sh>>=
+  awk '$3 == "gene"' mg.gff |
+      cut -f 4,5,7 > genes.txt
+#+end_src
+#+begin_export latex
+We count the 297 genes on the forward strand.
+#+end_export
+#+begin_src sh <<genome.sh>>=
+  awk '$3=="+"' genes.txt | wc -l
+#+end_src
+#+begin_export latex
+We count the 222 genes on the reverse strand.
+#+end_export
+#+begin_export latex
+Now we'd like to draw the genes in the genome of
+\emph{M. genitalium}. Each gene is drawn as an open box, genes on the
+forward strand upward, genes on reverse strand downward. For this we
+read a gene, set its y-coordinate, and print the box. At the end of
+the program we close the open boxes by a line that indicates the
+genome.  \bpr{drawGenes.awk}{pr:dg}
+#+end_export
+#+begin_src awk <<drawGenes.awk>>=
+  {
+    ##<<Read gene, Pr. \ref{pr:dg}>>
+    ##<<Set y-coordinate, Pr. \ref{pr:dg}>>
+    ##<<Print gene, Pr. \ref{pr:dg}>>
+  }
+  END {
+    ##<<Draw genome, Pr. \ref{pr:dg}>>
+  }
+#+end_src
+#+begin_export latex
+\epr We read the start, end, and strand of the current gene.
+#+end_export
+#+begin_src awk <<Read gene, Pr. \ref{pr:dg}>>=
+  start = $1
+  end = $1
+  strand = $3
+#+end_src
+#+begin_export latex
+The y-coordinate of a gene on the forward strand is 1, on the reverse
+strand -1.
+#+end_export
+#+begin_src awk <<Set y-coordinate, Pr. \ref{pr:dg}>>=
+  if (strand == "+")
+    y = 1
+  else
+    y = -1
+#+end_src
+#+begin_export latex
+We print the four corners of the gene as four pairs of
+coordinates.
+#+end_export
+#+begin_src awk <<Print gene, Pr. \ref{pr:dg}>>=
+  printf "%d\t%d\n", start, 0
+  printf "%d\t%d\n", start, y
+  printf "%d\t%d\n", end, y
+  printf "%d\t%d\n", end, 0
+#+end_src
+#+begin_export latex
+To draw the genome, we just ad one more point, the starting point at
+1,0.
+#+end_export
+#+begin_src awk <<Draw genome, Pr. \ref{pr:dg}>>=
+  printf "1\t0\n"
+#+end_src
+#+begin_export latex
+Now we convert the gene coordinates to a line graph, and convert the
+tick labels to kb. We save the data to \ty{genes.dat}.
+#+end_export
+#+begin_src sh <<genome.sh>>=
+  awk -f drawGenes.awk genes.txt |
+      awk '{printf "%f\t%d\n", $1/1000, $2}' > genes.dat
+#+end_src
+#+begin_export latex
+We can plot the one long line we just specified with the program
+\ty{plotLine}. The plot looks nicer if we set the y range to -5,5
+rather than the default -1,1. Since we don't need the y-axis, we
+suppress it. We also convert genome coordinates from base pairs to
+kilo bases, kb.
+#+end_export
+#+begin_src sh <<genome.sh>>=
+  plotLine -Y "-5:5" -x "Position (kb)" -u y genes.dat
+#+end_src
+#+begin_export latex
+The genome we just drew is shown in Figure~\ref{fig:mg1}.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics{../genome/mg1}
+  \end{center}
+  \caption{The 519 genes along the genome of
+    \emph{M. genitalium}.}\label{fig:mg1}
+\end{figure}
+
+Instead of using \ty{plotLine}, we now use \TikZ to draw the genes. So
+we construct another \LaTeX{} file, \ty{mgGenome.tex} with its header,
+title, and body.\bfile{mgGenome.tex}{fil:mgg}
+#+end_export
+#+begin_src latex <<mgGenome.tex>>=
+  %%<<Header, File \ref{fil:mgg}>>
+  \begin{document}
+  %%<<Title, File \ref{fil:mgg}>>
+  %%<<Body, File \ref{fil:mgg}>>
+  \end{document}
+#+end_src
+#+begin_export latex
+\efile In the header we declare we're writing an article.
+#+end_export
+#+begin_src latex <<Header, File \ref{fil:mgg}>>=
+  \documentclass{article}
+#+end_src
+#+begin_export latex
+We construct the title consisting of the actual title, the author, and
+the command for making the title.
+#+end_export
+#+begin_src latex <<Title, File \ref{fil:mgg}>>=
+  \title{The genome of \emph{Mycoplasmoides genitalium}}
+  \author{Beatriz}
+  \maketitle
+#+end_src
+#+begin_export latex
+To plot the genes, we simply plot the values we already have in
+\ty{genes.dat}. However, this time, we also adjust the width and
+height of the plot and remove the y axis. Figure~\ref{fig:mg2} shows
+the result. Compare this to the graph generated with \ty{plotLine} in
+Figure~\ref{fig:mg1}.
+\begin{figure}
+  \begin{center}
+    \input{../genome/tikz_1}
+  \end{center}
+  \caption{The genes along the genome of \emph{M. genitalium} drawn
+    with \TikZ.}\label{fig:mg2}
+\end{figure}
+#+end_export
+#+begin_src latex <<Body, File \ref{fil:mgg}>>=
+  \begin{tikzpicture}
+    \begin{axis}[
+	width=10cm, height=3cm, xlabel="Position (kb)",
+	axis y line=none
+      ]
+      \addplot[blue] table{genes.dat};
+    \end{axis}
+  \end{tikzpicture}
+#+end_src
+#+begin_export latex
+We add \TikZ and pgfplots to the header.
+#+end_export
+#+begin_src latex <<Header, File \ref{fil:mgg}>>=
+  \usepackage{tikz}
+  \usepackage{pgfplots}
+#+end_src

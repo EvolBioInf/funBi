@@ -1,36 +1,43 @@
 #+begin_export latex
-\TeX{} is a program to typeset documents~\cite{knu84:tex}. It is today
-usually known as \LaTeX{}~\cite{lam94:lat}, the version we shall
-use. Create the file \ty{hello.tex} in \ty{emacs}. It contains a
-header, a pair of commands to begin and end the document, and the
-title and the body of the document.
+\TeX{} is a program to typeset documents written by Donald Knuth in
+the late 1970s and early 1980s~\cite{knu84:tex}. Today it is usually
+known as \LaTeX{}~\cite{lam94:lat}, which is what we shall use. Create
+the file \ty{hello.tex} in \ty{emacs}. The file's contents are
+sketched below. They consist of a mixture of
+$\langle\mbox{placeholders}\rangle$ and \verb+\commands+. When you
+enter the place holders into \ty{hello.tex}, start with \verb+%+,
+which turns the remainder of the line into a comment, that is, into
+text ignored by \LaTeX{}. If we look a bit more closely,
+\ty{hello.tex} contains a header, a pair of commands to begin and end
+the document, a title, and the body of the document.
+\bfile{hello.tex}{fil:hel}
 #+end_export
 #+begin_src latex <<hello.tex>>=
-  %%<<Header>>
+  %%<<Header, File \ref{fil:hel}>>
   \begin{document}
-  %%<<Title>>
-  %%<<Body>>
+  %%<<Title, File \ref{fil:hel}>>
+  %%<<Body, File \ref{fil:hel}>>
   \end{document}
 #+end_src
 #+begin_export latex
-In the header we declare the class of the document, where we have a
+\efile In the header we declare the class of the document, where we have a
 choice between article, report, and book. We choose article.
 #+end_export
-#+begin_src latex <<Header>>=
+#+begin_src latex <<Header, File \ref{fil:hel}>>=
   \documentclass{article}
 #+end_src
 #+begin_export latex
 The title consists of the actual title and the author, followed by the
 command to make the title. As author you can put your own name.
 #+end_export
-#+begin_src latex <<Title>>=
+#+begin_src latex <<Title, File \ref{fil:hel}>>=
   \author{Beatriz}
   \title{My first \LaTeX{} document}
   \maketitle
 #+end_src
 #+begin_export latex
 Now we convert \ty{hello.tex} into the pdf \ty{hello.pdf} using the
-program \ty{pdflatex}.
+program \ty{pdflatex} on the command line.
 #+end_export
 #+begin_src sh <<cli>>=
   pdflatex hello
@@ -46,8 +53,9 @@ List the files in your current directory to make sure the new file
 We use the program \ty{evince} to view \ty{hello.pdf}. Notice the
 ampersand, \verb+&+, at the end of the command. It ensures that the
 window containing the pdf and the terminal can be active
-simultaneously. Otherwise the terminal is frozen until the window
-containing pdf is closed again.
+simultaneously. Otherwise, the terminal is frozen until the window
+containing pdf is closed again; not a big deal, just a bit
+inconvenient.
 #+end_export
 #+begin_src sh <<cli>>=
   evince hello.pdf &
@@ -58,8 +66,8 @@ date is in English, which may not be your first language. To typeset
 the date in, say, German, expand the header by the command to use the
 package babel with option German.
 #+end_export
-#+begin_src latex <<Header>>=
-  \usepackage[german]{babel}
+#+begin_src latex <<Header, File \ref{fil:hel}>>=
+    \usepackage[german]{babel}
 #+end_src
 #+begin_export latex
 Don't forget to typeset you document to see the changes.
@@ -68,42 +76,42 @@ Don't forget to typeset you document to see the changes.
   pdflatex hello.tex
 #+end_src
 #+begin_export latex
-You can replace ``german'' by any language for which the language
-installed on your system, try, for example, Portugese, or Russian.
+You can replace ``german'' by any language installed on your system;
+try, for example, Portuguese, or Russian.
 #+end_export
 #+begin_export latex
 In the body of our document, we learn how to draw lines in
 \LaTeX{}. So we enter the corresponding section head.
 #+end_export
-#+begin_src latex <<Body>>=
+#+begin_src latex <<Body, File \ref{fil:hel}>>=
   \section{Drawing Lines}
 #+end_src
 #+begin_export latex
 Again, run \ty{pdflatex} to see the document with the new section
 heading.
 
-We use Tikz to draw lines. Tikz stands for the German phrase ``Tikz
-ist kein Zeichenprogramm'', which translates to ``Tikz is not a
-drawing program''. So we add to the header the command for using that
+We use \TikZ to draw lines. \TikZ stands for the German phrase ``\TikZ
+ist kein Zeichenprogramm'', which translates to ``\TikZ is not a
+drawing program''~\cite{kol24:unl}. So we add to the header the command for using that
 package.
 #+end_export
-#+begin_src latex <<Header>>=
+#+begin_src latex <<Header, File \ref{fil:hel}>>=
   \usepackage{tikz}
 #+end_src
 #+begin_export latex
-In the body of our text, we add the commands to begin and end a Tikz
+In the body of our text, we add the commands to begin and end a \TikZ
 picture.
 #+end_export
-#+begin_src latex <<Body>>=
+#+begin_src latex <<Body, File \ref{fil:hel}>>=
   \begin{tikzpicture}
-    %%<<Picture>>
+    %%<<Picture, File \ref{fil:hel}>>
   \end{tikzpicture}
 #+end_src
 #+begin_export latex
 For the actual picture we first draw a grid of help lines. Notice the
 semicolon at the end of the draw command
 #+end_export
-#+begin_src latex <<Picture>>=
+#+begin_src latex <<Picture, File \ref{fil:hel}>>=
   \draw[help lines] grid (3,2);
 #+end_src
 #+begin_export latex
@@ -111,13 +119,72 @@ The first version of our picture consists of a red box. We specify
 four corners of the box and the path to connect them, which ``cycles''
 back to its origin.
 #+end_export
-#+begin_src latex <<Picture>>=
+#+begin_src latex <<Picture, File \ref{fil:hel}>>=
   \draw[red] (0,1) -- (0,2) -- (1,2) -- (1,1) -- cycle;
 #+end_src
 #+begin_export latex
 If we view the red box as pointing upwards, we now draw an adjacent
-blue box pointing downwards.
+blue box pointing downwards. Figure~\ref{fig:grid} shows our finished
+first \TikZ picture.
+\begin{figure}
+  \begin{center}
+    \input{../latex/tikz_1}
+  \end{center}
+  \caption{Our first \TikZ image showing a small helper grid and two
+    boxes.}\label{fig:grid}
+\end{figure}
 #+end_export
-#+begin_src latex <<Picture>>=
+#+begin_src latex <<Picture, File \ref{fil:hel}>>=
   \draw[blue] (1,0) -- (1,1) -- (3,1) -- (3,0) -- cycle;
+#+end_src
+#+begin_export latex
+\section{Plotting Data}
+In science we often wish to plot a graph. \TikZ also provides a
+powerful mechanism for that. To activate this mechanism, we use the
+package \ty{pgfplots}.
+#+end_export
+#+begin_src latex <<Header, File \ref{fil:hel}>>=
+  \usepackage{pgfplots}
+#+end_src
+#+begin_export latex
+We first create a section on plotting data.
+#+end_export
+#+begin_src latex <<Body, File \ref{fil:hel}>>=
+  \section{Plotting Data}
+#+end_src
+#+begin_export latex
+Now we need a bit of data to plot. To have some variety, we throw a
+dice one hundred times. That sounds like a lot, but don't worry, we
+leave the tedium to the computer. So we use it to generate one hundred
+random values between 0 and 5 and save them to the file
+\ty{r.dat}. The modulo operation, \verb+a % b+ divides \ty{a} by
+\ty{b} and returns the remainder. So our expression
+\verb+$(($RANDOM % 5))+ takes a random number, divides it by 6, and
+returns the remainder. This is one of the six random numbers between 0
+and 5.
+#+end_export
+#+begin_src sh <<cli>>=
+  for i in {1..100}; do
+      echo $i $(($RANDOM % 6))
+  done > r.dat
+#+end_src
+#+begin_export latex
+Th plot is a \TikZ picture, in which we declare axes, before we add a
+plot of the data we just generated. Figure~\ref{fig:data} shows our
+first data plot. Since we are plotting random numbers, yours is bound
+to look different.
+\begin{figure}
+  \begin{center}
+    \input{../latex/tikz_2}
+  \end{center}
+  \caption{Our first data plot showing 100 random values between 0 and
+  5.}\label{fig:data}
+\end{figure}
+#+end_export
+#+begin_src latex <<Body, File \ref{fil:hel}>>=
+  \begin{tikzpicture}
+    \begin{axis}
+      \addplot[blue] table{r.dat};
+    \end{axis}
+  \end{tikzpicture}
 #+end_src

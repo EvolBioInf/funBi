@@ -1,3 +1,4 @@
+doc/*.dat
 doc/date.txt
 doc/funBi.aux
 doc/funBi.bbl
@@ -5,6 +6,7 @@ doc/funBi.blg
 doc/funBi.dvi
 doc/funBi.log
 doc/funBi.pdf
+doc/funBi.ps
 doc/funBi.toc
 doc/genome.tex
 doc/latex.tex
@@ -16,6 +18,13 @@ genome/mg.fna
 genome/mg.gff
 genome/ncbi_dataset*
 genome/README.md
+genome/drawGenes.awk
+genome/genes.txt
+genome/genes.dat
+genome/mgGenome.*
+genome/*.tex
 latex/*.sh
+latex/*.tex
+latex/*.dat
 latex/hello.*
 unix/*.sh
