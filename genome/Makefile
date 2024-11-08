@@ -1,4 +1,4 @@
-all: drawGenes.awk mgGenome.pdf genome.sh tikz_1.tex
+all: drawGenes.awk mgGenome.pdf genome.sh tikz_1.tex genes.dat
 drawGenes.awk: genome.org
 	bash ../scripts/org2nw genome.org | notangle -RdrawGenes.awk > drawGenes.awk
 mgGenome.pdf: mgGenome.tex tikz_1.tex

@@ -20,11 +20,9 @@ genome/ncbi_dataset*
 genome/README.md
 genome/drawGenes.awk
 genome/genes.txt
-genome/genes.dat
 genome/mgGenome.*
 genome/*.tex
 latex/*.sh
 latex/*.tex
-latex/*.dat
 latex/hello.*
 unix/*.sh

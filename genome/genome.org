@@ -29,7 +29,8 @@ to rehydrate it, before we can use it.
 #+begin_export latex
 The names and locations of the genome and annotation files we have
 just downloaded are a bit inconvenient. So we move them into our
-working directory and give them better names.
+working directory and give them better names, \ty{mg.fna} for the
+genome and \ty{mg.gff} for the annotations.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   mv ncbi_dataset/data/*/*.fna mg.fna
@@ -63,8 +64,8 @@ become the input of \ty{less} using the pipe command, \verb+|+.
   awk '$3 == "gene"' mg.gff | less
 #+end_src
 #+begin_export latex
-We count the number of genes with the word counting program, \ty{wc},
-which we use in line-counting mode, \ty{-l}. How many genes are there?
+We count the number of genes with the word counter, \ty{wc}, which we
+use in line-counting mode, \ty{-l}. How many genes are there?
 #+end_export
 #+begin_src sh <<genome.sh>>=
   awk '$3 == "gene"' mg.gff | wc -l
@@ -78,6 +79,18 @@ and save the result to the file \ty{genes.txt}.
       cut -f 4,5,7 > genes.txt
 #+end_src
 #+begin_export latex
+Let's take a look at \ty{genes.txt}.
+#+end_export
+#+begin_src sh <<genome.sh>>=
+  less genes.txt
+#+end_src
+#+begin_export latex
+\begin{verbatim}
+686     1828    +
+1828    2760    +
+2845    4797    +
+...
+\end{verbatim}
 We count the 297 genes on the forward strand.
 #+end_export
 #+begin_src sh <<genome.sh>>=
@@ -140,8 +153,9 @@ To draw the genome, we just ad one more point, the starting point at
   printf "1\t0\n"
 #+end_src
 #+begin_export latex
-Now we convert the gene coordinates to a line graph, and convert the
-tick labels to kb. We save the data to \ty{genes.dat}.
+Now we convert the gene coordinates to a line graph with positions in
+kilo bases, kb, rather than the original base pairs. We save the data
+to \ty{genes.dat}.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   awk -f drawGenes.awk genes.txt |
@@ -151,8 +165,7 @@ tick labels to kb. We save the data to \ty{genes.dat}.
 We can plot the one long line we just specified with the program
 \ty{plotLine}. The plot looks nicer if we set the y range to -5,5
 rather than the default -1,1. Since we don't need the y-axis, we
-suppress it. We also convert genome coordinates from base pairs to
-kilo bases, kb.
+suppress it.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   plotLine -Y "-5:5" -x "Position (kb)" -u y genes.dat
@@ -165,7 +178,8 @@ The genome we just drew is shown in Figure~\ref{fig:mg1}.
     \includegraphics{../genome/mg1}
   \end{center}
   \caption{The 519 genes along the genome of
-    \emph{M. genitalium}.}\label{fig:mg1}
+    \emph{M. genitalium}; upward pointing genes are on the forward
+    strand, downward pointing genes on the reverse strand.}\label{fig:mg1}
 \end{figure}
 
 Instead of using \ty{plotLine}, we now use \TikZ to draw the genes. So
@@ -196,7 +210,7 @@ the command for making the title.
 #+end_src
 #+begin_export latex
 To plot the genes, we simply plot the values we already have in
-\ty{genes.dat}. However, this time, we also adjust the width and
+\ty{genes.dat}. However, this time we also adjust the width and
 height of the plot and remove the y axis. Figure~\ref{fig:mg2} shows
 the result. Compare this to the graph generated with \ty{plotLine} in
 Figure~\ref{fig:mg1}.
@@ -204,7 +218,7 @@ Figure~\ref{fig:mg1}.
   \begin{center}
     \input{../genome/tikz_1}
   \end{center}
-  \caption{The genes along the genome of \emph{M. genitalium} drawn
+  \caption{The 519 genes along the genome of \emph{M. genitalium} drawn
     with \TikZ.}\label{fig:mg2}
 \end{figure}
 #+end_export
@@ -219,7 +233,8 @@ Figure~\ref{fig:mg1}.
   \end{tikzpicture}
 #+end_src
 #+begin_export latex
-We add \TikZ and pgfplots to the header.
+In order to be able to use \TikZ and pgfplots, we add the
+corresponding packages to the header.
 #+end_export
 #+begin_src latex <<Header, File \ref{fil:mgg}>>=
   \usepackage{tikz}

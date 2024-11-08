@@ -1,33 +1,40 @@
 #+begin_export latex
 Whenever we interact with a computer, what we are really doing is
-interacting with an operating system, for example Android, MS-Windows,
-macOS, or chromeOS. Adnroid, macOS, and chromeOS belongs to a family
-of operating systems called Unix. The first Unix systems were
-developed in the late 1960s, and today Unix technology underlies much
-of our computing infrastructure, ranging from mobile phones to
-supercomputers.
+interacting with an operating system that passes our every wish as
+commands to the hardware. Well-known examples of operating systems
+include Android, MS-Windows, macOS, or chromeOS. Adnroid, macOS, and
+chromeOS belongs to a family of operating systems called Unix. The
+first Unix systems were developed in the late 1960s, and today Unix
+technology underlies much of our computing infrastructure, ranging
+from mobile phones to supercomputers.
 
 The user interface of phones and most desktop computers is
 graphical. However, on desktop systems Unix also comes with a
-text-based interface, the ``command line''. On macOS the command line
-can be accessed via the terminal program, on Windows 10 or 11 via the
-``Windows Subsystem for Linux'', WSL, and on chromeOS via Linux on
+text-based interface, the ``command line''. On Windows 10 or 11 the
+command line can be accessed via the ``Windows Subsystem for Linux'',
+WSL, on macOS via the terminal program, and on chromeOS via Linux on
 ChromeOS.
 
 The command-line interface is used by computer professionals
 throughout the world. It is also standardized, which means that once
 you have mastered it on one system, you have mastered it on all.
 
-We begin our exploration of Unix by making the directory
-\ty{funBi}. To do so, enter the following command, followed by
-\ty{Enter}.
+We begin our exploration of Unix by listing the contents of our
+current directory. To do so, enter the following command, followed by
+\ty{Enter}. Can you make sense of what you see?
+#+end_export
+#+begin_src sh <<unix>>=
+  ls
+#+end_src
+#+begin_export latex
+We make a new directory for our work in this practical, \ty{funBi};
+don't forget to press enter after the following command.
 #+end_export
 #+begin_src sh <<unix>>=
   mkdir funBi
 #+end_src
 #+begin_export latex
-We change into this directory; don't forget to press enter after the
-following command.
+We change into this directory.
 #+end_export
 #+begin_src sh <<unix>>=
   cd funBi
@@ -36,10 +43,10 @@ following command.
 Since the command line interface is text-based, we often need write or
 edit text files. For this we need a specialized program, an
 editor. There are a number of editors to chose from, we use
-\ty{emacs}. This comes in various versions, some with graphical user
+\ty{emacs}. This comes in various versions, some with a graphical user
 interface, some without. Since setting up the graphical user interface
-is often problematic, we run the version without graphical user
-interface.
+is often problematic, we run \ty{emacs} without it, that is, we start
+`no window'', \ty{-nw}.
 #+end_export
 #+begin_src sh <<unix>>=
   emacs -nw hello.txt
@@ -58,9 +65,14 @@ are really important. Perhaps the three most important commands are
 \item \ty{C-x C-c} to quit \ty{emacs}
 \end{enumerate}
 
-A good way to learn \ty{emacs}, is to work through the tutorial. Can
-you find the tutorial in the menu? Once you've done so, spend some
-time working on the tutorial. When you quite the tutorial, \ty{emacs}
+A good way to learn \ty{emacs}, is to work through its tutorial. Can
+you find the \ty{emacs} tutorial in the menu? Once you've done so,
+spend some time working on it. When you quit the tutorial, \ty{emacs}
 asks, whether you'd like to save your current position. It's a good
 idea to do so and to come back for more later.
+
+It is a good idea to keep \ty{emacs} running in one terminal window
+and the command line in another, rather than starting and quitting
+\ty{emacs} every time a file needs to be edited. Can you construct
+such a setup on your system?
 #+end_export
