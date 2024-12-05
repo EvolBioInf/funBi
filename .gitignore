@@ -21,7 +21,6 @@ genome/README.md
 genome/drawGenes.awk
 genome/genes.txt
 genome/mgGenome.*
-genome/*.tex
 latex/*.sh
 latex/*.tex
 latex/hello.*
