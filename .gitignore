@@ -24,4 +24,5 @@ genome/mgGenome.*
 latex/*.sh
 latex/*.tex
 latex/hello.*
+latex/*.dat
 unix/*.sh

@@ -1,0 +1,189 @@
+#+begin_export latex
+Sequence alignments are an essential step for bioinformatics
+work. Sequences change over time by accumulating random mutations. By
+tracing these mutations across diferent sequences it is possible to
+trace their evolutionary history. Sequence alignments allows us to
+identify these mutations and to propose an evolutionary history
+through the detection of mutatations, insertions and deletions.
+
+In this small exercise we aim to show on mutations, insertions and
+deletions can affect the construction of an alignment.
+
+We start by simulating a random sequence with 100bp and saving it to
+the file \ty{seq1.fasta}. Then we create a copy of the simulated
+sequence and save it to a second file called \ty{seq2.fasta}.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  ranseq > seq1.fasta
+  cp seq1.fasta seq2.fasta
+#+end_src
+#+begin_export latex
+Since we are simulating a random sequence, yours will differ from
+mine. Here is my simulated sequence, composed by a header and a
+sequence.
+
+\begin{verbatim}
+>Rand1
+ AGGCTACTAGGCCTTCAACCTTCTGTATGAGCCGA
+ CCTGAAAGGGGGCGCCGACTCTGATTGAAGTATCC
+ ACTTCACATGGTTGACTAGCGTAGCCAATA
+\end{verbatim}
+#+end_export
+#+begin_export latex
+By default, single sequences simulated with \ty{ranseq} are named
+`Rand1'. Since the two files are exactly the same, the header of the
+sequences will also be identical. To distinguish between the two
+sequences we modify the header of the second sequence with \ty{sed}
+from `Rand1' to `Rand2'. Alternatively, you can also modify the header
+with \ty{emacs}.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  sed -i 's/Rand1/Rand2/' seq2.fasta
+#+end_src
+#+begin_export latex
+We can now align these two sequences we generated with the program
+\ty{al}.
+
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  al seq2.fasta seq1.fasta
+#+end_src
+#+begin_export latex
+The two sequences should align perfectly with a score of 100 and no
+errors.
+
+We can also visualize the alignment by writing down the nucleotides
+for every position in the query (seq1) and the subject (seq2). A match
+between two nucleotides is marked with a `|'. 
+
+\begin{verbatim}
+Query   Rand2 (100 residues)
+Subject Rand1 (100 residues)
+Score   100
+Errors  0 (0 gaps, 0 mismatches)
+
+Query   1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
+          ||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
+
+
+Query   51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
+           ||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
+\end{verbatim}
+
+We now randomly mutate 10\% of the second sequence, with the program
+\ty{mutator}, rename the sequence and align it back to the original
+sequence.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  mutator -m 0.1 seq2.fasta > seq3.fasta
+  sed -i 's/Rand2.*/Rand3/' seq3.fasta
+  al seq3.fasta seq1.fasta
+#+end_src
+#+begin_export latex
+The two sequences now contain 11 mismatches, and the alignment score
+has decreased to 56.
+
+The location of the mismatches can be identified in the alignment by
+the lack of the `|' mark.
+
+\begin{verbatim}
+Query   Rand3 (100 residues)
+Subject Rand1 (100 residues)
+Score   56
+Errors  11 (0 gaps, 11 mismatches)
+
+
+Query   1 TTGTGGATCGTGTTCCGACATTATGAAGTTATCCGTGACCTGCCCATGTG 50
+          ||||| ||||||||||||||||||||||||| |||  | ||  |||||||
+Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
+
+
+Query   51 CCTGGAATAAGGTTAGAGCGCTACCATCGCGAGATCGCAGATAATATCAA 100
+           |||||||||| ||||||||||||| || | ||||||||||||||||||||
+Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
+\end{verbatim}
+
+Besides accumulating point mutations, sequences can also mutate due to
+insertions or deletions.
+
+To recreate this, we delete a 20bp region from seq1 with \ty{cutSeq}
+starting at position 20 and ending at position 41. The new sequence is
+saved to the file \ty{seq4.fasta}. We also clean up the name of the
+sequence to reflect the file name. Alternatively, you can also modify
+the sequence and its name with a text editor like \ty{emacs}.
+
+We can then align seq1 to seq4 with \ty{al}.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  cutSeq -j -r 1-20,41-100 seq1.fasta > seq4.fasta
+  sed -i 's/Rand1.*/Rand4/' seq4.fasta
+  al seq4.fasta seq1.fasta
+#+end_src
+#+begin_export latex
+Alignment gaps between sequences are marked with a `-'. Indicating
+that a given region as no equivalent match in the other sequence.
+
+In this case, we know that the gap is due to a deletion in the
+query. However, since the same pattern would appear if it was due to
+an insertion, insertions and deletion events are usually called
+`indels'.
+
+\begin{verbatim}
+Query   Rand4 (80 residues)
+Subject Rand1 (100 residues)
+Score   37
+Errors  20 (20 gaps, 0 mismatches)
+
+
+Query   1 TTGTGAATCGTGTTCCGACAT--------------------CGCCATGTG 30
+          |||||||||||||||||||||                    |||||||||
+Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
+
+
+Query   31 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 80
+           ||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
+
+\end{verbatim}
+
+If instead of a deletion, part of the sequence was duplicated then the
+gap would be marked in the subject sequence.
+
+To recreate a duplication, we extract the same region twice with
+\ty{cutSeq}. Then we rename the newly extended sequence to
+\ty{seq5.fasta} and align it again.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  cutSeq -j -r 1-60,51-60,61-80 seq4.fasta > seq5.fasta
+  sed -i 's/Rand.*/Rand5/' seq5.fasta
+  al seq5.fasta seq1.fasta
+#+end_src
+#+begin_export latex
+\begin{verbatim}
+Query   Rand5 (90 residues)
+Subject Rand1 (100 residues)
+Score   14
+Errors  30 (30 gaps, 0 mismatches)
+
+
+Score   14
+Errors  30 (30 gaps, 0 mismatches)
+
+
+Query   1 ATCTTCCGCTTTGTCTTATG--------------------CTCCCCGCCG 30
+          ||||||||||||||||||||                    ||||||||||
+Subject 1 ATCTTCCGCTTTGTCTTATGTCGTCCTCGCTTGTGGTAAACTCCCCGCCG 50
+
+
+Query   31 GTCTCTTGACGATGCATAGGGGCGATACCAGGCGATACCATTGAAATCTC 80
+           ||||||||||||||||||||||||||||||          ||||||||||
+Subject 51 GTCTCTTGACGATGCATAGGGGCGATACCA----------TTGAAATCTC 90
+
+
+Query   81 TACACTCGGG 90
+           ||||||||||
+Subject 91 TACACTCGGG 100
+\end{verbatim}
+#+end_export
