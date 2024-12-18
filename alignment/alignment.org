@@ -63,12 +63,12 @@ Score   100
 Errors  0 (0 gaps, 0 mismatches)
 
 Query   1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
-          ||||||||||||||||||||||||||||||||||||||||||||||||||
+            ||||||||||||||||||||||||||||||||||||||||||||||||||
 Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
 
 
 Query   51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
-           ||||||||||||||||||||||||||||||||||||||||||||||||||
+             ||||||||||||||||||||||||||||||||||||||||||||||||||
 Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
 \end{verbatim}
 
@@ -96,12 +96,12 @@ Errors  11 (0 gaps, 11 mismatches)
 
 
 Query   1 TTGTGGATCGTGTTCCGACATTATGAAGTTATCCGTGACCTGCCCATGTG 50
-          ||||| ||||||||||||||||||||||||| |||  | ||  |||||||
+            ||||| ||||||||||||||||||||||||| |||  | ||  |||||||
 Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
 
 
 Query   51 CCTGGAATAAGGTTAGAGCGCTACCATCGCGAGATCGCAGATAATATCAA 100
-           |||||||||| ||||||||||||| || | ||||||||||||||||||||
+             |||||||||| ||||||||||||| || | ||||||||||||||||||||
 Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
 \end{verbatim}
 
@@ -138,12 +138,12 @@ Errors  20 (20 gaps, 0 mismatches)
 
 
 Query   1 TTGTGAATCGTGTTCCGACAT--------------------CGCCATGTG 30
-          |||||||||||||||||||||                    |||||||||
+            |||||||||||||||||||||                    |||||||||
 Subject 1 TTGTGAATCGTGTTCCGACATTATGAAGTTAACCGCCAGCTCGCCATGTG 50
 
 
 Query   31 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 80
-           ||||||||||||||||||||||||||||||||||||||||||||||||||
+             ||||||||||||||||||||||||||||||||||||||||||||||||||
 Subject 51 CCTGGAATAACGTTAGAGCGCTACTATTGAGAGATCGCAGATAATATCAA 100
 
 \end{verbatim}
@@ -173,17 +173,17 @@ Errors  30 (30 gaps, 0 mismatches)
 
 
 Query   1 ATCTTCCGCTTTGTCTTATG--------------------CTCCCCGCCG 30
-          ||||||||||||||||||||                    ||||||||||
+            ||||||||||||||||||||                    ||||||||||
 Subject 1 ATCTTCCGCTTTGTCTTATGTCGTCCTCGCTTGTGGTAAACTCCCCGCCG 50
 
 
 Query   31 GTCTCTTGACGATGCATAGGGGCGATACCAGGCGATACCATTGAAATCTC 80
-           ||||||||||||||||||||||||||||||          ||||||||||
+             ||||||||||||||||||||||||||||||          ||||||||||
 Subject 51 GTCTCTTGACGATGCATAGGGGCGATACCA----------TTGAAATCTC 90
 
 
 Query   81 TACACTCGGG 90
-           ||||||||||
+             ||||||||||
 Subject 91 TACACTCGGG 100
 \end{verbatim}
 #+end_export
