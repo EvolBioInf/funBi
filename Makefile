@@ -1,4 +1,4 @@
-dirs = genome latex unix alignment
+dirs = genome latex unix alignment doc
 all:
 	for dir in $(dirs); do \
 		make -C $$dir; \
