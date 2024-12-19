@@ -1,15 +1,20 @@
-Query   Rand5 join(1..20,41..100) join(1..60,51..60,61..80) (90 residues)
-Subject Rand1                                               (100 residues)
+Query   Rand5 (90 residues)
+Subject Rand1 (100 residues)
 Score   14
 Errors  30 (30 gaps, 0 mismatches)
 
 
-Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGTAGTTTACACGTGCAACCGGG 50
-          ||||||||||||||||||||||                    ||||||||||||||||||||||||||||
-Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGT 30
+          ||||||||||||||||||||||                    ||||||||
+Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGT 50
 
 
-Query   51 AATGAAAGTGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 90
-           |||||||||||          |||||||||||||||||||
-Subject 71 AATGAAAGTGA----------GTAGCCAGCCGCCCAGTTG 100
+Query   31 AGTTTACACGTGCAACCGGGAATGAAAGTGAATGAAAGTGAGTAGCCAGC 80
+           |||||||||||||||||||||||||||||||          |||||||||
+Subject 51 AGTTTACACGTGCAACCGGGAATGAAAGTGA----------GTAGCCAGC 90
+
+
+Query   81 CGCCCAGTTG 90
+           ||||||||||
+Subject 91 CGCCCAGTTG 100
 //

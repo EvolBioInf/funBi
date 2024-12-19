@@ -3,7 +3,7 @@ Besides studying the detailed structure of DNA sequences through
 alignment, we can also study the structure of whole genomes. In the
 following example we plot the locations of all genes of
 \emph{Mycoplasmoides genitalium}, a sexually transmitted bacterium,
-which can cause urethrities, inflamation of the urethra.
+which can cause urethritis, inflamation of the urethra.
 
 We start by downloading the genome of \emph{Mycoplasmoides
 genitalium}, which has accession \verb+GCA_000027325.1+. Apart from

@@ -19,9 +19,7 @@ and save it to a second file called \ty{seq2.fasta}.
 Here is our simulated sequence, composed of a header and a
 sequence. If you did not seed the random number generator of
 \ty{ranseq} with 3, your sequence will differ from ours.
-\small
-\verbatiminput{../alignment/seq1.fasta}
-\normalsize
+\verbatiminput{../alignment/seq.fasta}
 #+end_export
 #+begin_export latex
 By default, single sequences simulated with \ty{ranseq} are named
@@ -46,36 +44,53 @@ between two nucleotides is marked with a `|'.
   al seq2.fasta seq1.fasta
 #+end_src
 #+begin_export latex
-\scriptsize
 \verbatiminput{../alignment/al1.txt}
-\normalsize
 
 We now randomly mutate 10\% of the second sequence with the program
 \ty{mutator}. Again, we seed its random number generator, which you
-are free to ignore. We rename the mutated sequence Rand3 and align it
-back to the original sequence.
+are free to ignore.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   mutator -s 5 -m 0.1 seq2.fasta > seq3.fasta
-  sed -i 's/2/3/' seq3.fasta
+#+end_src
+#+begin_export latex
+The new header in \ty{seq3.fasta} is now
+\begin{verbatim}
+>Rand2 - mutated
+\end{verbatim}
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  head -n 1 seq3.fasta
+#+end_src
+#+begin_export latex
+We rename the mutated sequence Rand3 by changing the 2 to 3 and
+removing everything that comes after it.
+#+end_export
+#+begin_src sh <<seq.sh>>=
+  sed -i 's/2.*/3/' seq3.fasta
+#+end_src
+#+begin_export latex
+We align \ty{seq3.fasta} and \ty{seq1.fasta}. The two sequences now
+contain 5 mismatches, and the alignment score has decreased to
+80. Notice that mismatches lack the match mark, `|'.
+#+end_export
+#+begin_src sh <<seq.sh>>=
   al seq3.fasta seq1.fasta
 #+end_src
 #+begin_export latex
-The two sequences now contain 5 mismatches, and the alignment score
-has decreased to 80. Notice that mismatches lack the match mark, `|'.
-\scriptsize \verbatiminput{../alignment/al2.txt} \normalsize
+\verbatiminput{../alignment/al2.txt}
 
 As we already said at the beginning of this section, besides
 accumulating point mutations, sequences can also mutate due to
 insertions or deletions. To recreate this, we delete the 20
 nucleotides 41--60 in \ty{seq1.fasta} by cutting the nucleotides 1--40
 and 61--100, and joining the two fragments to form a new
-sequence. Then we align \ty{seq1.fasta} to \ty{seq4.fasta} with
-\ty{al}.
+sequence. Then we rename \ty{seq4.fasta} and align it to
+\ty{seq1.fasta} with \ty{al}.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-20,41-100 seq1.fasta > seq4.fasta
-  sed -i 's/1/4/' seq4.fasta
+  sed -i 's/1.*/4/' seq4.fasta
   al seq4.fasta seq1.fasta
 #+end_src
 #+begin_export latex
@@ -85,7 +100,8 @@ happen to know that the gap is due to a deletion we made in the query,
 Rand4. However, since the same pattern would appear if it was due to
 an insertion in the subject, Rand1, insertions and deletions are often
 not distinguished and instead are collectively called `indels'.
-\scriptsize \verbatiminput{../alignment/al3.txt} \normalsize
+\pagebreak
+\verbatiminput{../alignment/al3.txt}
 
 If instead of a deletion, part of the query sequence was duplicated,
 then the gap would be marked in the subject sequence. To recreate such
@@ -95,11 +111,9 @@ a duplication, we extract the query region 51--60 twice with
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-60,51-60,61-80 seq4.fasta > seq5.fasta
-  sed -i 's/4/5/' seq5.fasta
+  sed -i 's/4.*/5/' seq5.fasta
   al seq5.fasta seq1.fasta
 #+end_src
 #+begin_export latex
-\scriptsize
 \verbatiminput{../alignment/al4.txt}
-\normalsize
 #+end_export

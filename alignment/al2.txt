@@ -1,15 +1,15 @@
-Query   Rand3 - mutated (100 residues)
-Subject Rand1           (100 residues)
+Query   Rand3 (100 residues)
+Subject Rand1 (100 residues)
 Score   80
 Errors  5 (0 gaps, 5 mismatches)
 
 
-Query   1 TTGCGCAACGTAGATCCTTCCCGCAATCATAATGGAGAATCCTGATCTGTAGTTTACACGTGCAACCGGG 70
-          || ||||||||  ||||||||||||||||||||||||| ||||| |||||||||||||||||||||||||
-Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+Query   1 TTGCGCAACGTAGATCCTTCCCGCAATCATAATGGAGAATCCTGATCTGT 50
+          || ||||||||  ||||||||||||||||||||||||| ||||| |||||
+Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGT 50
 
 
-Query   71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
-           ||||||||||||||||||||||||||||||
-Subject 71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+Query   51 AGTTTACACGTGCAACCGGGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+           ||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 51 AGTTTACACGTGCAACCGGGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
 //
