@@ -1,4 +1,4 @@
-dirs = genome latex unix
+dirs = genome latex unix doc
 all:
 	for dir in $(dirs); do \
 		make -C $$dir; \
