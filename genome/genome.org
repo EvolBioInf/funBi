@@ -1,11 +1,17 @@
 #+begin_export latex
-We download the genome of \emph{Mycoplasmoides genitalium}, which has
-accession \verb+GCA_000027325.1+. Apart from its raw genome sequence,
-we also download its annotation, the list of genes and other features
-of the genome sequence. The annotation comes in a format called
-GFF3. We download the genome and its annotation in a compact,
-``dehydrated'', form. The backslashes, \verb+\+, in the following
-command indicate line continuation.
+Besides sequence alignment it is also important to study how genome
+are structured and where genes are located. In this short example we
+look at plotting the location of all known genes for
+\emph{Mycoplasmoides genitalium}, a sexually transmissive bacteria
+which can cause urethrities, inflamation of the urethra.
+
+We start by downloading the genome of \emph{Mycoplasmoides
+genitalium}, which has accession \verb+GCA_000027325.1+. Apart from
+its raw genome sequence, we also download its annotation, the list of
+genes and other features of the genome sequence. The annotation comes
+in a format called GFF3. We download the genome and its annotation in
+a compact, ``dehydrated'', form. The backslashes, \verb+\+, in the
+following command indicate line continuation.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   datasets download genome accession GCA_000027325.1 \

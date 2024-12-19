@@ -2,7 +2,10 @@
 \TeX{} is a program to typeset documents written by Donald Knuth in
 the late 1970s and early 1980s~\cite{knu84:tex}. Today it is usually
 known as its descendant \LaTeX{}~\cite{lam94:lat}, which is what we
-shall use. Create the file \ty{hello.tex} in \ty{emacs}. The file's
+shall use. Here we show you how to create a simple tex file and make
+simple plots.
+
+Start by creating the file \ty{hello.tex} in \ty{emacs}. The file's
 contents are sketched below. They consist of a mixture of
 $\langle\mbox{placeholders}\rangle$ and \verb+\commands+. When you
 enter the place holders into \ty{hello.tex}, start with \verb+%+,
@@ -127,7 +130,7 @@ back to its origin.
 If we view the red box as pointing upwards, we now draw an adjacent
 blue box pointing downwards. Figure~\ref{fig:grid} shows our finished
 first \TikZ picture.
-\begin{figure}
+\begin{figure}[h]
   \begin{center}
     \input{../latex/tikz_1}
   \end{center}
@@ -159,7 +162,7 @@ tedium to the computer. We use it to generate 100 values between 1 and
 6 and save them to the file \ty{r.dat}. The modulo operation,
 \verb+a % b+ divides \ty{a} by \ty{b} and returns the remainder. So
 our expression \verb!$(($RANDOM % 5 + 1))! takes a random number,
-divides it by 6, and ads one to the remainder. This simulates the
+divides it by 6, and adds one to the remainder. This simulates the
 result of rolling dice.
 #+end_export
 #+begin_src sh <<cli>>=
@@ -169,21 +172,22 @@ result of rolling dice.
 #+end_src
 #+begin_export latex
 The actual plot is a \TikZ picture, in which we declare axes, before
-we add a plot of the data we just generated. Figure~\ref{fig:data}
-shows our first data plot. Since we are plotting random numbers, yours
-is bound to look different.
-\begin{figure}
+we add an histogram with 6 bins of the data we just
+generated. Figure~\ref{fig:data} shows our first histogram. Since we
+are plotting random numbers, yours is bound to look different.
+\begin{figure}[h]
   \begin{center}
     \input{../latex/tikz_2}
   \end{center}
-  \caption{Our first data plot showing the results of 100 dice rolls
+  \caption{Our first histogram plot showing the results of 100 dice rolls
     simulated on the computer.}\label{fig:data}
 \end{figure}
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:hel}>>=
   \begin{tikzpicture}
     \begin{axis}
-      \addplot[blue] table{r.dat};
+      ybar interval,
+      \addplot[hist={bins=6}] table{r.dat};
     \end{axis}
   \end{tikzpicture}
 #+end_src

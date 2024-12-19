@@ -2,7 +2,7 @@
 Whenever we interact with a computer, what we are really doing is
 interacting with an operating system that passes our every wish as
 commands to the hardware. Well-known examples of operating systems
-include Android, MS-Windows, macOS, or chromeOS. Adnroid, macOS, and
+include Android, MS-Windows, macOS, or chromeOS. Android, macOS, and
 chromeOS belongs to a family of operating systems called Unix. The
 first Unix systems were developed in the late 1960s, and today Unix
 technology underlies much of our computing infrastructure, ranging
