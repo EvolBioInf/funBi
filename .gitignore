@@ -2,7 +2,6 @@ alignment/*.fasta
 alignment/*.sh
 doc/*.dat
 doc/alignment.tex
-doc/date.txt
 doc/funBi.aux
 doc/funBi.bbl
 doc/funBi.blg
@@ -14,7 +13,6 @@ doc/funBi.toc
 doc/genome.tex
 doc/latex.tex
 doc/unix.tex
-doc/version.txt
 genome/*.sh
 genome/md5sum.txt
 genome/mg.fna
