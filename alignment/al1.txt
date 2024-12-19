@@ -1,0 +1,15 @@
+Query   Rand2 (100 residues)
+Subject Rand1 (100 residues)
+Score   100
+Errors  0 (0 gaps, 0 mismatches)
+
+
+Query   1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+          ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+
+
+Query   71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+           ||||||||||||||||||||||||||||||
+Subject 71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+//

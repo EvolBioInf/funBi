@@ -1,8 +1,8 @@
 #+begin_export latex
-Besides sequence alignment it is also important to study how genome
-are structured and where genes are located. In this short example we
-look at plotting the location of all known genes for
-\emph{Mycoplasmoides genitalium}, a sexually transmissive bacteria
+Besides studying the detailed structure of DNA sequences through
+alignment, we can also study the structure of whole genomes. In the
+following example we plot the locations of all genes of
+\emph{Mycoplasmoides genitalium}, a sexually transmitted bacterium,
 which can cause urethrities, inflamation of the urethra.
 
 We start by downloading the genome of \emph{Mycoplasmoides
@@ -105,6 +105,9 @@ We count the 297 genes on the forward strand.
 #+begin_export latex
 We count the 222 genes on the reverse strand.
 #+end_export
+#+begin_src sh <<genome.sh>>=
+  awk '$3=="-"' genes.txt | wc -l
+#+end_src
 #+begin_export latex
 Now we'd like to draw the genes in the genome of
 \emph{M. genitalium}. Each gene is drawn as an open box, genes on the
@@ -170,8 +173,8 @@ to \ty{genes.dat}.
 #+begin_export latex
 We can plot the one long line we just specified with the program
 \ty{plotLine}. The plot looks nicer if we set the y range to -5,5
-rather than the default -1,1. Since we don't need the y-axis, we
-suppress it.
+rather than the default -1,1. Since we don't need the y-axis, we unset
+it with \ty{-u}.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   plotLine -Y "-5:5" -x "Position (kb)" -u y genes.dat
@@ -231,7 +234,7 @@ Figure~\ref{fig:mg1}.
 #+begin_src latex <<Body, File \ref{fil:mgg}>>=
   \begin{tikzpicture}
     \begin{axis}[
-	width=10cm, height=3cm, xlabel="Position (kb)",
+	width=10cm, height=3cm, xlabel=Position (kb),
 	axis y line=none
       ]
       \addplot[blue] table{genes.dat};

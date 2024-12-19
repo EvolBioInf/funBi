@@ -1,0 +1,15 @@
+Query   Rand4 join(1..20,41..100) (80 residues)
+Subject Rand1                     (100 residues)
+Score   37
+Errors  20 (20 gaps, 0 mismatches)
+
+
+Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGTAGTTTACACGTGCAACCGGG 50
+          ||||||||||||||||||||||                    ||||||||||||||||||||||||||||
+Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+
+
+Query   51 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 80
+           ||||||||||||||||||||||||||||||
+Subject 71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+//

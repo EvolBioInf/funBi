@@ -1,4 +1,7 @@
+alignment/*.fasta
+alignment/*.sh
 doc/*.dat
+doc/alignment.tex
 doc/date.txt
 doc/funBi.aux
 doc/funBi.bbl
