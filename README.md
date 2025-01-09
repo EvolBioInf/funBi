@@ -1,4 +1,4 @@
-# [funBi](https://owncloud.gwdg.de/index.php/s/azm5ImqUpGUYdRw): Fun with Bioinformatics
+# [funBi](https://owncloud.gwdg.de/index.php/s/VybIG3Olm6fUPNf): Fun with Bioinformatics
 ## Authors
 Beatriz Vieira Mourato and Bernhard Haubold
 ## Description
