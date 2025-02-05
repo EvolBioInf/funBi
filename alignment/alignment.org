@@ -2,7 +2,7 @@
 DNA sequences change over time by accumulating random mutations. The
 most common types of mutation are single nucleotide changes,
 insertions, and deletions. By aligning two or more sequences, we can
-identify these mutations. In this exercise we show to calculate
+identify these mutations. In this exercise we show how to calculate
 alignments and how mutations are reflected in them.
 
 We start by simulating a random 100\,bp sequence with the program
@@ -38,7 +38,7 @@ We now align our two sequences with the program \ty{al}. The sequences
 should align perfectly with a score of 100 and no errors. As you can
 see, the alignment is visualized by writing down the nucleotides for
 every position in the query (Rand2) and the subject (Rand1). A match
-between two nucleotides is marked with a `|'.
+between two nucleotides is marked with vertical lines, `|'.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   al seq2.fasta seq1.fasta
@@ -99,7 +99,7 @@ absence of an equivalent match in the other sequence. In this case, we
 happen to know that the gap is due to a deletion we made in the query,
 Rand4. However, since the same pattern would appear if it was due to
 an insertion in the subject, Rand1, insertions and deletions are often
-not distinguished and instead are collectively called `indels'.
+not distinguished and instead collectively called `indels'.
 \pagebreak
 \verbatiminput{../alignment/al3.txt}
 

@@ -155,7 +155,7 @@ coordinates.
   printf "%d\t%d\n", end, 0
 #+end_src
 #+begin_export latex
-To draw the genome, we just ad one more point, the starting point at
+To draw the genome, we just add one more point, the starting point at
 1,0.
 #+end_export
 #+begin_src awk <<Draw genome, Pr. \ref{pr:dg}>>=

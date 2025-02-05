@@ -2,7 +2,7 @@
 Whenever we interact with a computer, what we are really doing is
 interacting with an operating system that passes our every wish as
 commands to the hardware. Well-known examples of operating systems
-include Android, MS-Windows, macOS, or chromeOS. Android, macOS, and
+include Android, MS-Windows, macOS, and chromeOS. Android, macOS, and
 chromeOS belongs to a family of operating systems called Unix. The
 first Unix systems were developed in the late 1960s, and today Unix
 technology underlies much of our computing infrastructure, ranging
@@ -15,13 +15,15 @@ command line can be accessed via the ``Windows Subsystem for Linux'',
 WSL, on macOS via the terminal program, and on chromeOS via Linux on
 ChromeOS.
 
-The command-line interface is used on a daily basis by computer professionals
-throughout the world. It is also standardized, which means that once
-you have mastered it on one system, you have mastered it on all.
+The command line interface is used on a daily basis by computer
+professionals throughout the world. One of its advantages compared to
+graphical user interfaces is that the command line is standardized,
+which means that once you have mastered it on one system, you have
+mastered it on all.
 
-We begin our exploration of Unix by listing the contents of our
-current directory. To do so, enter the following command, followed by
-\ty{Enter}. Can you make sense of what you see?
+We begin our exploration of the Unix command line by listing the
+contents of our current directory. To do so, enter the following
+command, followed by \ty{Enter}. Can you make sense of what you see?
 #+end_export
 #+begin_src sh <<unix.sh>>=
   ls
@@ -41,7 +43,7 @@ We change into this directory.
 #+end_src
 #+begin_export latex
 Since the command line interface is text-based, we often need to write
-or edit text files. For this we need a specialized program, an
+or edit text files. For this we use a specialized program, an
 editor. There are a number of editors to chose from, we use
 \ty{emacs}. This comes in various versions, some with a graphical user
 interface, some without. Since setting up the graphical user interface
@@ -66,10 +68,10 @@ are really important. Perhaps the three most important commands are
 \end{enumerate}
 
 A good way to learn \ty{emacs}, is to work through its tutorial. Can
-you find the \ty{emacs} tutorial in the menu? Once you've done so,
-spend some time working on it. When you quit the tutorial, \ty{emacs}
-asks, whether you'd like to save your current position. It's a good
-idea to do so and to come back for more later.
+you find the \ty{emacs} tutorial in the menu? Once you've found it,
+spend some time doing the first couple of exercises. When you quit the
+tutorial, \ty{emacs} asks, whether you'd like to save your current
+position. It's a good idea to do so and to come back for more later.
 
 It is also a good idea to keep \ty{emacs} running in one terminal
 window and the command line in another, rather than starting and

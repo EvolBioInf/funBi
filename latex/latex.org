@@ -2,12 +2,11 @@
 \TeX{} is a program to typeset documents written by Donald Knuth in
 the late 1970s and early 1980s~\cite{knu84:tex}. Today it is usually
 known as its descendant \LaTeX{}~\cite{lam94:lat}, which is what we
-shall use. Here we show you how to create a simple tex file and make
-simple plots.
+shall use. Here we show you how to create a tex file and make plots.
 
 Start by creating the file \ty{hello.tex} in \ty{emacs}. The file's
 contents are sketched below. They consist of a mixture of
-$\langle\mbox{placeholders}\rangle$ and \verb+\commands+. When you
+$\langle\mbox{place holders}\rangle$ and \verb+\commands+. When you
 enter the place holders into \ty{hello.tex}, start with \verb+%+,
 which turns the remainder of the line into a comment, that is, into
 text ignored by \LaTeX{}. If we look a bit more closely,
@@ -23,8 +22,8 @@ the document, a title, and the body of the document.
   \end{document}
 #+end_src
 #+begin_export latex
-\efile In the header we declare the class of the document, where we have a
-choice between article, report, and book. We choose article.
+\efile In the header we declare the class of the document, which might
+be an article, a report, or a book. We choose article.
 #+end_export
 #+begin_src latex <<Header, File \ref{fil:hel}>>=
   \documentclass{article}
@@ -73,7 +72,7 @@ babel with option German.
     \usepackage[german]{babel}
 #+end_src
 #+begin_export latex
-Don't forget to typeset you document to see the changes.
+Don't forget to typeset your document to see the changes.
 #+end_export
 #+begin_src sh <<cli>>=
   pdflatex hello.tex
@@ -84,7 +83,7 @@ try, for example, Portuguese, or Russian.
 #+end_export
 #+begin_export latex
 In the body of our document, we draw lines. So we enter the
-corresponding section head.
+corresponding section header.
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:hel}>>=
   \section{Drawing Lines}
@@ -95,8 +94,8 @@ heading.
 
 We use \TikZ to draw lines. \TikZ is a German acronym for ``\TikZ ist
 kein Zeichenprogramm'', which translates to ``\TikZ is not a drawing
-program''~\cite{kol24:unl}. So we add to the header the command for
-using the package \TikZ.
+program''~\cite{kol24:unl}. So we add to the document header the
+command for using the package \TikZ.
 #+end_export
 #+begin_src latex <<Header, File \ref{fil:hel}>>=
   \usepackage{tikz}
@@ -157,7 +156,7 @@ We first create a section on plotting data.
 #+end_src
 #+begin_export latex
 Now we need a bit of data to plot. To have some variety, we throw a
-dice 100 times. That sounds like a lot, but don't worry, we leave the
+die 100 times. That sounds like a lot, but don't worry, we leave the
 tedium to the computer. We use it to generate 100 values between 1 and
 6 and save them to the file \ty{r.dat}. The modulo operation,
 \verb+a % b+, divides \ty{a} by \ty{b} and returns the remainder. So
