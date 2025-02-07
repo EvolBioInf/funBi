@@ -10,4 +10,4 @@ tikz_1.tex: mgGenome.tex
 genome.sh: genome.org
 	bash ../scripts/org2nw genome.org | notangle -Rgenome.sh > genome.sh
 clean:
-	rm -f drawGenes.awk mgGenome.pdf
+	rm -f drawGenes.awk mgGenome.pdf genome.sh mgGenome.log mgGenome.tex

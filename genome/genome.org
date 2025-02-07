@@ -131,7 +131,7 @@ genome.  \bpr{drawGenes.awk}{pr:dg}
 #+end_export
 #+begin_src awk <<Read gene, Pr. \ref{pr:dg}>>=
   start = $1
-  end = $1
+  end = $2
   strand = $3
 #+end_src
 #+begin_export latex
