@@ -56,8 +56,9 @@ start \ty{emacs} in ``no window'' mode, \ty{-nw}.
 #+begin_export latex
 Try typing something into \ty{hello.txt}, for example, ``Hello
 world''. The question is now, how can we save what we have just typed?
-In order to find out, activate the \ty{emacs} menu by pressing
-F10. Can you find out how to save your text?
+In order to find out, activate the \ty{emacs} menu by pressing F10 on
+a PC keyboard or fn-F10 on an Apple keyboard. Can you find out how to
+save your text?
 
 The program \ty{emacs} comes with many commands, only a few of which
 are really important. Perhaps the three most important commands are

@@ -162,7 +162,8 @@ tedium to the computer. We use it to generate 100 values between 1 and
 \verb+a % b+, divides \ty{a} by \ty{b} and returns the remainder. So
 our expression \verb!$(($RANDOM % 5 + 1))! takes a random number,
 divides it by 6, and adds one to the remainder. This simulates the
-result of rolling a die.
+result of rolling a die. The command \verb+>+ redirects the output of
+our \ty{for} loop from the screen to the file \ty{r.dat}.
 #+end_export
 #+begin_src sh <<cli>>=
   for i in {1..100}; do
@@ -172,16 +173,7 @@ result of rolling a die.
 #+begin_export latex
 The actual plot is a \TikZ picture, in which we declare axes, before
 we add a histogram with 6 bins of the data we just
-generated. Figure~\ref{fig:data} shows the result, our first
-histogram. Since we are plotting random numbers, yours is bound to
-look different.
-\begin{figure}[h]
-  \begin{center}
-    \input{../latex/tikz_2}
-  \end{center}
-  \caption{Our first histogram plot showing the results of 100 rolls
-    of a die.}\label{fig:data}
-\end{figure}
+generated.
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:hel}>>=
   \begin{tikzpicture}
@@ -191,3 +183,15 @@ look different.
     \end{axis}
   \end{tikzpicture}
 #+end_src
+#+begin_export latex
+After typesetting, we get Figure~\ref{fig:data}, our first
+histogram. Since we are plotting random numbers, yours is bound to
+look different from ours.
+\begin{figure}[h]
+  \begin{center}
+    \input{../latex/tikz_2}
+  \end{center}
+  \caption{Our first histogram plot showing the results of 100 rolls
+    of a die.}\label{fig:data}
+\end{figure}
+#+end_export

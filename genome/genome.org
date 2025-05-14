@@ -43,23 +43,26 @@ genome and \ty{mg.gff} for the annotations.
   mv ncbi_dataset/data/*/*.gff mg.gff
 #+end_src
 #+begin_export latex
-Take a look at the genome sequence with the program \ty{less}. Can you
-describe what you see? Press \ty{q} to quit.
+We take a look at the genome sequence with the program \ty{less}. Can
+you describe what you see? Press \ty{q} to quit.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   less mg.fna
 #+end_src
 #+begin_export latex
-Use the program \ty{cres} to count the residues in the genome. How
+We use the program \ty{cres} to count the residues in the genome. How
 large is the genome of \emph{M. genitalium}?
 #+end_export
 #+begin_src sh <<genome.sh>>=
   cres mg.fna
 #+end_src
 #+begin_export latex
-Also take a look at the annotation file. Can you describe what you
+We also take a look at the annotation file. Can you describe what you
 see?
 #+end_export
+#+begin_src sh <<genome.sh>>=
+  less mg.gff
+#+end_src
 #+begin_export latex
 We extract the genes in the genome by filtering for rows where the
 entry in the third column is ``gene''. We again use \ty{less} to look
@@ -78,7 +81,8 @@ use in line-counting mode, \ty{-l}. How many genes are there?
 #+end_src
 #+begin_export latex
 For better handling, we cut out the gene intervals and their strand,
-and save the result to the file \ty{genes.txt}.
+which are located in columns 4, 5, and 7. We save the result to the
+file \ty{genes.txt}.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   awk '$3 == "gene"' mg.gff |
@@ -220,26 +224,19 @@ the command for making the title.
 #+begin_export latex
 To plot the genes, we simply plot the values we already have in
 \ty{genes.dat}. However, this time we also adjust the width and
-height of the plot and remove the y axis. Figure~\ref{fig:mg2} shows
-the result. Compare this to the graph generated with \ty{plotLine} in
-Figure~\ref{fig:mg1}.
-\begin{figure}
-  \begin{center}
-    \input{../genome/tikz_1}
-  \end{center}
-  \caption{The 519 genes along the genome of \emph{M. genitalium} drawn
-    with \TikZ.}\label{fig:mg2}
-\end{figure}
+height of the plot and remove the y axis.
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:mgg}>>=
-  \begin{tikzpicture}
-    \begin{axis}[
-	width=10cm, height=3cm, xlabel=Position (kb),
-	axis y line=none
-      ]
-      \addplot[blue] table{genes.dat};
-    \end{axis}
-  \end{tikzpicture}
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+	  width=13.5cm, height=3cm, xlabel=Position (kb),
+	  axis y line=none
+	]
+	\addplot[blue] table{genes.dat};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
 #+end_src
 #+begin_export latex
 In order to be able to use \TikZ and pgfplots, we add the
@@ -248,4 +245,19 @@ corresponding packages to the header.
 #+begin_src latex <<Header, File \ref{fil:mgg}>>=
   \usepackage{tikz}
   \usepackage{pgfplots}
+#+end_src
+#+begin_export latex
+We typeset and display the genome to get Figure~\ref{fig:mg2}. It is
+basically the same as Figure~\ref{fig:mg1}, though \LaTeX{} affords
+more flexibility in formatting, while plotting from a pipeline is
+quicker.
+\begin{figure}
+  \input{../genome/tikz_1}
+  \caption{The 519 genes along the genome of \emph{M. genitalium} drawn
+    with \TikZ.}\label{fig:mg2}
+\end{figure}
+#+end_export
+#+begin_src sh <<genome.sh>>=
+  pdflatex genome.tex
+  evince genome.pdf &
 #+end_src

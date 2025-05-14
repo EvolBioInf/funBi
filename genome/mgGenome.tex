@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\begin{document}
+\title{The genome of \emph{Mycoplasmoides genitalium}}
+\author{Beatriz}
+\maketitle
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+          width=13.5cm, height=3cm, xlabel=Position (kb),
+          axis y line=none
+        ]
+        \addplot[blue] table{genes.dat};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+\end{document}

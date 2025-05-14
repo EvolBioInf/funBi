@@ -26,12 +26,14 @@ By default, single sequences simulated with \ty{ranseq} are named
 `Rand1'. Since the two files \ty{seq1.fasta} and \ty{seq2.fasta} are
 exact copies, their headers are also identical. To distinguish the two
 sequences, we modify the header of the second sequence with the
-``stream editor'' program \ty{sed} from `Rand1' to
-`Rand2'. Alternatively, you can also modify the header with
+``stream editor'' program \ty{sed} from `Rand1' to `Rand2', save the
+result to the temporary file \ty{tmp}, and move that back to the
+original file. Alternatively, you can also modify the header with
 \ty{emacs}.
 #+end_export
 #+begin_src sh <<seq.sh>>=
-  sed -i 's/1/2/' seq2.fasta
+  sed 's/1/2/' seq2.fasta > tmp
+  mv tmp seq2.fasta
 #+end_src
 #+begin_export latex
 We now align our two sequences with the program \ty{al}. The sequences
@@ -67,7 +69,8 @@ We rename the mutated sequence Rand3 by changing the 2 to 3 and
 removing everything that comes after it.
 #+end_export
 #+begin_src sh <<seq.sh>>=
-  sed -i 's/2.*/3/' seq3.fasta
+  sed 's/2.*/3/' seq3.fasta > tmp
+  mv tmp seq3.fasta
 #+end_src
 #+begin_export latex
 We align \ty{seq3.fasta} and \ty{seq1.fasta}. The two sequences now
@@ -90,7 +93,8 @@ sequence. Then we rename \ty{seq4.fasta} and align it to
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-20,41-100 seq1.fasta > seq4.fasta
-  sed -i 's/1.*/4/' seq4.fasta
+  sed 's/1.*/4/' seq4.fasta > tmp
+  mv tmp seq4.fasta
   al seq4.fasta seq1.fasta
 #+end_src
 #+begin_export latex
@@ -111,7 +115,8 @@ a duplication, we extract the query region 51--60 twice with
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-60,51-60,61-80 seq4.fasta > seq5.fasta
-  sed -i 's/4.*/5/' seq5.fasta
+  sed 's/4.*/5/' seq5.fasta > tmp
+  mv tmp seq5.fasta
   al seq5.fasta seq1.fasta
 #+end_src
 #+begin_export latex

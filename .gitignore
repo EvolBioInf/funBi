@@ -1,6 +1,5 @@
 alignment/*.fasta
 !alignment/seq.fasta
-alignment/*.sh
 doc/*.dat
 doc/alignment.tex
 doc/date.txt
@@ -16,17 +15,18 @@ doc/genome.tex
 doc/latex.tex
 doc/unix.tex
 doc/version.txt
-genome/*.sh
 genome/md5sum.txt
 genome/mg.fna
 genome/mg.gff
 genome/ncbi_dataset*
 genome/README.md
-genome/drawGenes.awk
 genome/genes.txt
 genome/mgGenome.*
+!genome/mgGenome.tex
 latex/*.sh
+!latex/cli.sh
 latex/*.tex
 latex/hello.*
+!latex/hello.tex
 latex/*.dat
 unix/*.sh

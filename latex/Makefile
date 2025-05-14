@@ -1,8 +1,15 @@
+nw = $(shell which noweb)
+
 all: hello.tex tikz_1.tex tikz_2.tex cli.sh
+
 hello.tex: latex.org
-	bash ../scripts/org2nw latex.org | notangle -Rhello.tex > hello.tex
+	if [ "$(nw)" != "" ]; then\
+		bash ../scripts/org2nw latex.org | notangle -Rhello.tex > hello.tex;\
+	fi
 cli.sh: latex.org
-	bash ../scripts/org2nw latex.org | notangle -Rcli > cli.sh
+	if [ "$(nw)" != "" ]; then\
+		bash ../scripts/org2nw latex.org | notangle -Rcli > cli.sh;\
+	fi
 tikz_1.tex: hello.tex
 	awk -f ../scripts/exTikz.awk hello.tex
 tikz_2.tex: hello.tex r.dat
