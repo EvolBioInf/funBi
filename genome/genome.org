@@ -252,7 +252,9 @@ basically the same as Figure~\ref{fig:mg1}, though \LaTeX{} affords
 more flexibility in formatting, while plotting from a pipeline is
 quicker.
 \begin{figure}
-  \input{../genome/tikz_1}
+  \begin{center}
+    \input{../genome/tikz_1}
+  \end{center}
   \caption{The 519 genes along the genome of \emph{M. genitalium} drawn
     with \TikZ.}\label{fig:mg2}
 \end{figure}

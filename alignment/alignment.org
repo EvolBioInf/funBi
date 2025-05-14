@@ -86,38 +86,56 @@ contain 5 mismatches, and the alignment score has decreased to
 As we already said at the beginning of this section, besides
 accumulating point mutations, sequences can also mutate due to
 insertions or deletions. To recreate this, we delete the 20
-nucleotides 41--60 in \ty{seq1.fasta} by cutting the nucleotides 1--40
+nucleotides 41--60 in \ty{seq3.fasta} by cutting the nucleotides 1--40
 and 61--100, and joining the two fragments to form a new
-sequence. Then we rename \ty{seq4.fasta} and align it to
-\ty{seq1.fasta} with \ty{al}.
+sequence, \ty{seq4.fasta}.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-20,41-100 seq1.fasta > seq4.fasta
+#+end_src
+#+begin_src latex
+  We rename \ty{seq4.fasta}.
+#+end_src
+#+begin_src sh <<seq.sh>>=
   sed 's/1.*/4/' seq4.fasta > tmp
   mv tmp seq4.fasta
-  al seq4.fasta seq1.fasta
+#+end_src
+#+begin_src latex
+  We align \ty{seq4.fasta} with its mutated homolog
+  \ty{seq3.fasta}. Alignment gaps are marked with hyphens, `-', which
+  indicate the absence of an equivalent match in the other sequence. In
+  this case, we happen to know that the gap is due to a deletion we made
+  in the query, Rand4. However, since the same pattern would appear if
+  it was due to an insertion in the subject, Rand3, insertions and
+  deletions are often not distinguished and instead collectively called
+  `indels'.
+#+end_src
+#+begin_src sh <<seq.sh>>=
+  al seq4.fasta seq3.fasta
 #+end_src
 #+begin_export latex
-Alignment gaps are marked with hyphens, `-', which indicate the
-absence of an equivalent match in the other sequence. In this case, we
-happen to know that the gap is due to a deletion we made in the query,
-Rand4. However, since the same pattern would appear if it was due to
-an insertion in the subject, Rand1, insertions and deletions are often
-not distinguished and instead collectively called `indels'.
-\pagebreak
 \verbatiminput{../alignment/al3.txt}
 
 If instead of a deletion, part of the query sequence was duplicated,
 then the gap would be marked in the subject sequence. To recreate such
 a duplication, we extract the query region 51--60 twice with
-\ty{cutSeq}. Then we rename the newly extended sequence
-\ty{seq5.fasta} and align it again.
+\ty{cutSeq} and save the result in \ty{seq5.fasta}.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-60,51-60,61-80 seq4.fasta > seq5.fasta
+#+end_src
+#+begin_src latex
+  We rename the sequence in \ty{seq5.fasta}.
+#+end_src
+#+begin_src sh <<seq.sh>>=
   sed 's/4.*/5/' seq5.fasta > tmp
   mv tmp seq5.fasta
-  al seq5.fasta seq1.fasta
+#+end_src
+#+begin_src latex
+  In the alignment we see the deletion and the duplication as long gaps.
+#+end_src
+#+begin_src sh <<seq.sh>>=
+  al seq5.fasta seq3.fasta
 #+end_src
 #+begin_export latex
 \verbatiminput{../alignment/al4.txt}

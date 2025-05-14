@@ -171,17 +171,18 @@ our \ty{for} loop from the screen to the file \ty{r.dat}.
   done > r.dat
 #+end_src
 #+begin_export latex
-The actual plot is a \TikZ picture, in which we declare axes, before
-we add a histogram with 6 bins of the data we just
-generated.
+The actual plot is a centered \TikZ picture, in which we declare axes,
+before we add a histogram with 6 bins of the data we just generated.
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:hel}>>=
-  \begin{tikzpicture}
-    \begin{axis}
-      ybar interval,
-      \addplot[hist={bins=6}] table{r.dat};
-    \end{axis}
-  \end{tikzpicture}
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}
+	ybar interval,
+	\addplot[hist={bins=6}] table{r.dat};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
 #+end_src
 #+begin_export latex
 After typesetting, we get Figure~\ref{fig:data}, our first
