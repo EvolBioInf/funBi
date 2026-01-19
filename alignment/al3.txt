@@ -1,15 +1,15 @@
 Query   Rand4 (80 residues)
-Subject Rand2 (100 residues)
-Score   37
-Errors  20 (20 gaps, 0 mismatches)
+Subject Rand3 (100 residues)
+Score   21
+Errors  24 (20 gaps, 4 mismatches)
 
 
-Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGTAGTTTACACGTGCAACCGGG 50
-          ||||||||||||||||||||||                    ||||||||||||||||||||||||||||
-Subject 1 TTACGCAACGTTAATCCTTCCCGCAATCATAATGGAGACTCCTGTTCTGTAGTTTACACGTGCAACCGGG 70
+Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGT 30
+          || ||||||||  |||||||||                    || |||||
+Subject 1 TTGCGCAACGTAGATCCTTCCCGCAATCATAATGGAGAATCCTGATCTGT 50
 
 
-Query   51 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 80
-           ||||||||||||||||||||||||||||||
-Subject 71 AATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
+Query   31 AGTTTACACGTGCAACCGGGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 80
+           ||||||||||||||||||||||||||||||||||||||||||||||||||
+Subject 51 AGTTTACACGTGCAACCGGGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 100
 //

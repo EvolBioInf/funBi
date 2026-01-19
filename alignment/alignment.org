@@ -19,9 +19,9 @@ and save it to a second file called \ty{seq2.fasta}.
 Here is our simulated sequence, composed of a header and a
 sequence. If you did not seed the random number generator of
 \ty{ranseq} with 3, your sequence will differ from ours.
-\verbatiminput{../alignment/seq.fasta}
-#+end_export
-#+begin_export latex
+\small
+\verbatiminput{../alignment/seq1.fasta}
+\normalsize
 By default, single sequences simulated with \ty{ranseq} are named
 `Rand1'. Since the two files \ty{seq1.fasta} and \ty{seq2.fasta} are
 exact copies, their headers are also identical. To distinguish the two
@@ -37,13 +37,15 @@ original file. Alternatively, you can also modify the header with
 #+end_src
 #+begin_export latex
 We now align our two sequences with the program \ty{al}. The sequences
-should align perfectly with a score of 100 and no errors. As you can
-see, the alignment is visualized by writing down the nucleotides for
-every position in the query (Rand2) and the subject (Rand1). A match
-between two nucleotides is marked with vertical lines, `|'.
+should align perfectly with a score identidcal to their lengths, 100,
+and no errors. As you can see, the alignment is visualized by writing
+down the nucleotides for every position in the query (Rand2) and the
+subject (Rand1). Matches between two nucleotides are marked with
+vertical lines, `|'. To fit the alignments on a page, we limit the
+length of each line to 50 characters.
 #+end_export
 #+begin_src sh <<seq.sh>>=
-  al seq2.fasta seq1.fasta
+  al -L 50 seq2.fasta seq1.fasta
 #+end_src
 #+begin_export latex
 \verbatiminput{../alignment/al1.txt}
@@ -78,29 +80,28 @@ contain 5 mismatches, and the alignment score has decreased to
 80. Notice that mismatches lack the match mark, `|'.
 #+end_export
 #+begin_src sh <<seq.sh>>=
-  al seq3.fasta seq1.fasta
+  al -L 50 seq3.fasta seq1.fasta
 #+end_src
 #+begin_export latex
 \verbatiminput{../alignment/al2.txt}
 
-As we already said at the beginning of this section, besides
-accumulating point mutations, sequences can also mutate due to
-insertions or deletions. To recreate this, we delete the 20
-nucleotides 41--60 in \ty{seq3.fasta} by cutting the nucleotides 1--40
-and 61--100, and joining the two fragments to form a new
-sequence, \ty{seq4.fasta}.
+As already mentioned, besides accumulating point mutations, sequences
+can also mutate due to insertions or deletions. To recreate this, we
+delete the 20 nucleotides 41--60 in \ty{seq3.fasta} by cutting the
+nucleotides 1--40 and 61--100, and joining the two fragments to form a
+new sequence, \ty{seq4.fasta}.
 #+end_export
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-20,41-100 seq1.fasta > seq4.fasta
 #+end_src
-#+begin_src latex
-  We rename \ty{seq4.fasta}.
-#+end_src
+#+begin_export latex
+We rename \ty{seq4.fasta}.
+#+end_export
 #+begin_src sh <<seq.sh>>=
   sed 's/1.*/4/' seq4.fasta > tmp
   mv tmp seq4.fasta
 #+end_src
-#+begin_src latex
+#+begin_export latex
   We align \ty{seq4.fasta} with its mutated homolog
   \ty{seq3.fasta}. Alignment gaps are marked with hyphens, `-', which
   indicate the absence of an equivalent match in the other sequence. In
@@ -109,9 +110,9 @@ sequence, \ty{seq4.fasta}.
   it was due to an insertion in the subject, Rand3, insertions and
   deletions are often not distinguished and instead collectively called
   `indels'.
-#+end_src
+#+end_export
 #+begin_src sh <<seq.sh>>=
-  al seq4.fasta seq3.fasta
+  al -L 50 seq4.fasta seq3.fasta
 #+end_src
 #+begin_export latex
 \verbatiminput{../alignment/al3.txt}
@@ -124,18 +125,18 @@ a duplication, we extract the query region 51--60 twice with
 #+begin_src sh <<seq.sh>>=
   cutSeq -j -r 1-60,51-60,61-80 seq4.fasta > seq5.fasta
 #+end_src
-#+begin_src latex
+#+begin_export latex
   We rename the sequence in \ty{seq5.fasta}.
-#+end_src
+#+end_export
 #+begin_src sh <<seq.sh>>=
   sed 's/4.*/5/' seq5.fasta > tmp
   mv tmp seq5.fasta
 #+end_src
-#+begin_src latex
+#+begin_export latex
   In the alignment we see the deletion and the duplication as long gaps.
-#+end_src
+#+end_export
 #+begin_src sh <<seq.sh>>=
-  al seq5.fasta seq3.fasta
+  al -L 50 seq5.fasta seq3.fasta
 #+end_src
 #+begin_export latex
 \verbatiminput{../alignment/al4.txt}

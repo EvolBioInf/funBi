@@ -3,7 +3,7 @@ Besides studying the detailed structure of DNA sequences through
 alignment, we can also study the structure of whole genomes. In the
 following example we plot the locations of all genes of
 \emph{Mycoplasmoides genitalium}, a sexually transmitted bacterium,
-which can cause urethritis, inflamation of the urethra.
+which can cause urethritis in humans, inflamation of the urethra.
 
 We start by downloading the genome of \emph{Mycoplasmoides
 genitalium}, which has accession \verb+GCA_000027325.1+. Apart from
@@ -34,7 +34,7 @@ to rehydrate it, before we can use it.
 #+end_src
 #+begin_export latex
 The names and locations of the genome and annotation files we have
-just downloaded are a bit inconvenient. So we move them into our
+just downloaded are a bit inconvenient. So we move the files into our
 working directory and give them better names, \ty{mg.fna} for the
 genome and \ty{mg.gff} for the annotations.
 #+end_export
@@ -65,9 +65,14 @@ see?
 #+end_src
 #+begin_export latex
 We extract the genes in the genome by filtering for rows where the
-entry in the third column is ``gene''. We again use \ty{less} to look
-at the data, only this time we ``pipe'' the output of the filtering to
-become the input of \ty{less} using the pipe command, \verb+|+.
+entry in the third column is ``gene''. The filter is a small program
+in the programming language Awk~\cite{aho24:awk}. Awk breaks the input
+into lines and each line is split at white space into tokens
+referenced $\$1, \$2,...$ from left to right. So $\$3$ refers to the
+third column. If this is ``gene'', Awk prints the line. We again use
+\ty{less} to look at the data, only this time we ``pipe'' the output
+of the filtering to become the input of \ty{less} using the pipe
+command, \verb+|+.
 #+end_export
 #+begin_src sh <<genome.sh>>=
   awk '$3 == "gene"' mg.gff | less
@@ -114,11 +119,12 @@ We count the 222 genes on the reverse strand.
 #+end_src
 #+begin_export latex
 Now we'd like to draw the genes in the genome of
-\emph{M. genitalium}. Each gene is drawn as an open box, genes on the
-forward strand upward, genes on reverse strand downward. For this we
-read a gene, set its y-coordinate, and print the box. At the end of
-the program we close the open boxes by a line that indicates the
-genome.  \bpr{drawGenes.awk}{pr:dg}
+\emph{M. genitalium}. For this we write a slightly more elaborate Awk
+program in the file \ty{drawGenes.awk}. Each gene is drawn as an open
+box, genes on the forward strand upward, genes on reverse strand
+downward. For this we read a gene, set its y-coordinate, and print the
+box. At the end of the program we close the open boxes by a line that
+indicates the genome.  \bpr{drawGenes.awk}{pr:dg}
 #+end_export
 #+begin_src awk <<drawGenes.awk>>=
   {
@@ -213,8 +219,8 @@ title, and body.\bfile{mgGenome.tex}{fil:mgg}
   \documentclass{article}
 #+end_src
 #+begin_export latex
-We construct the title consisting of the actual title, the author, and
-the command for making the title.
+We construct the title of our ``article'' from the actual title, the
+author, and the command for making the title.
 #+end_export
 #+begin_src latex <<Title, File \ref{fil:mgg}>>=
   \title{The genome of \emph{Mycoplasmoides genitalium}}
@@ -223,15 +229,16 @@ the command for making the title.
 #+end_src
 #+begin_export latex
 To plot the genes, we simply plot the values we already have in
-\ty{genes.dat}. However, this time we also adjust the width and
-height of the plot and remove the y axis.
+\ty{genes.dat}, again labeling the x axis and without the y axis. In
+addition, we also adjust the width and height of the plot and remove
+the y axis.
 #+end_export
 #+begin_src latex <<Body, File \ref{fil:mgg}>>=
   \begin{center}
     \begin{tikzpicture}
       \begin{axis}[
-	  width=13.5cm, height=3cm, xlabel=Position (kb),
-	  axis y line=none
+	  xlabel=Position (kb), axis y line=none,
+	  width=13.5cm, height=3cm
 	]
 	\addplot[blue] table{genes.dat};
       \end{axis}

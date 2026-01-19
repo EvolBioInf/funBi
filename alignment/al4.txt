@@ -4,12 +4,17 @@ Score   -2
 Errors  34 (30 gaps, 4 mismatches)
 
 
-Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGTAGTTTACACGTGCAACCGGG 50
-          || ||||||||  |||||||||                    || |||||||||||||||||||||||||
-Subject 1 TTGCGCAACGTAGATCCTTCCCGCAATCATAATGGAGAATCCTGATCTGTAGTTTACACGTGCAACCGGG 70
+Query   1 TTACGCAACGTTAATCCTTCCC--------------------TGTTCTGT 30
+          || ||||||||  |||||||||                    || |||||
+Subject 1 TTGCGCAACGTAGATCCTTCCCGCAATCATAATGGAGAATCCTGATCTGT 50
 
 
-Query   51 AATGAAAGTGAATGAAAGTGAGTAGCCAGCCGCCCAGTTG 90
-           |||||||||||          |||||||||||||||||||
-Subject 71 AATGAAAGTGA----------GTAGCCAGCCGCCCAGTTG 100
+Query   31 AGTTTACACGTGCAACCGGGAATGAAAGTGAATGAAAGTGAGTAGCCAGC 80
+           |||||||||||||||||||||||||||||||          |||||||||
+Subject 51 AGTTTACACGTGCAACCGGGAATGAAAGTGA----------GTAGCCAGC 90
+
+
+Query   81 CGCCCAGTTG 90
+           ||||||||||
+Subject 91 CGCCCAGTTG 100
 //
