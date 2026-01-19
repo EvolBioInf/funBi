@@ -1,7 +1,7 @@
 #+begin_export latex
 Whenever we interact with a computer, what we are really doing is
 interacting with an operating system that passes our every wish as
-commands to the hardware. Well-known examples of operating systems
+command to the hardware. Well-known examples of operating systems
 include Android, MS-Windows, macOS, and chromeOS. Android, macOS, and
 chromeOS belongs to a family of operating systems called Unix. The
 first Unix systems were developed in the late 1960s, and today Unix
