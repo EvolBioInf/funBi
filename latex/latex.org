@@ -110,9 +110,10 @@ picture.
   \end{tikzpicture}
 #+end_src
 #+begin_export latex
-For the actual picture we first draw a grid of help lines. This makes
-it easier to locate coordinates for drawing and can be removed in the
-final picture. Notice the semicolon at the end of the draw command
+For the actual picture we first draw a grid of ``help lines''. This
+makes it easier to locate coordinates for drawing and can be removed
+in the final picture. Notice the semicolon at the end of the draw
+command
 #+end_export
 #+begin_src latex <<Picture, File \ref{fil:hel}>>=
   \draw[help lines] grid (3,2);
@@ -158,9 +159,9 @@ We first create a section on plotting data.
 Now we need a bit of data to plot. To have some variety, we throw a
 die 100 times. That sounds like a lot, but don't worry, we leave the
 tedium to the computer. We use it to generate 100 values between 1 and
-6 and save them to the file \ty{r.dat}. The modulo operation,
+6 and save them to the file \ty{r.dat}. The modulo operator in
 \verb+a % b+, divides \ty{a} by \ty{b} and returns the remainder. So
-our expression \verb!$(($RANDOM % 5 + 1))! takes a random number,
+our expression \verb!$(($RANDOM % 6 + 1))! takes a random number,
 divides it by 6, and adds one to the remainder. This simulates the
 result of rolling a die. The command \verb+>+ redirects the output of
 our \ty{for} loop from the screen to the file \ty{r.dat}.
