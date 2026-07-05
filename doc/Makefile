@@ -13,8 +13,7 @@ $(TEXT).pdf: $(TEXT).tex $(SRC1) $(SRC2) genes.dat
 	bibtex $(TEXT)
 	latex $(TEXT).tex
 	latex $(TEXT).tex
-	dvips $(TEXT) -o -q
-	ps2pdf -dALLOWPSTRANSPARENCY $(TEXT).ps
+	dvipdf -dALLOWPSTRANSPARENCY $(TEXT) -o -q
 publish: $(TEXT).pdf
 	if [ -d /mnt/c/Users/haubold/ownCloud\ -\ haubold@evolbio.mpg.de@owncloud.gwdg.de/docs/ ]; then \
 		cp $(TEXT).pdf /mnt/c/Users/haubold/ownCloud\ -\ haubold@evolbio.mpg.de@owncloud.gwdg.de/docs/; \
